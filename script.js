@@ -2,6 +2,11 @@ var config = {
 	settings:{
         hasHeaders: true,
         showPopoutIcon: false,
+       
+    },
+    dimensions:{
+        headerHeight:40,
+        borderWidth: 5,
     },
 	content: [{
 		type: 'row',

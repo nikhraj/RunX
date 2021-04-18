@@ -3,6 +3,7 @@
   "minimap": {
     "enabled": false
   },
+  "src":"code.cpp",
   "tabSize": 2,
   "fontSize": 20,
   "wordWrap": "on",
@@ -10,5 +11,15 @@
   "wrappingIndent": "same",
   "mouseWheelZoom": true,
   "copyWithSyntaxHighlighting": true,
-  "theme": "vs-dark"
+  "theme": "vs-dark",
+  "scrollbar": {
+		"useShadows": true,
+		"verticalHasArrows": true,
+		"horizontalHasArrows": true,
+		"vertical": "visible",
+		"horizontal": "visible",
+		"verticalScrollbarSize": 7,
+		"horizontalScrollbarSize": 7,
+		"arrowSize": 7
+	},
 }

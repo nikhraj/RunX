@@ -10,6 +10,21 @@
 .gl-wrapper {
   padding: 1rem;
 }
+.lm_tab {
+  height: 30px !important;
+  line-height:30px;
+  font-size: 15px!important;
+}
+
+.lm_close_tab {
+  height: 30px !important;
+  line-height: 28px!important;
+  font-size: 15px !important;
+}
+
+.lm_controls {
+  top:10px;
+}
 body {
   font-family: sans-serif;
   color: #fff;
