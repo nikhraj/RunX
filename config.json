@@ -1,0 +1,14 @@
+{
+  "language": "cpp",
+  "minimap": {
+    "enabled": false
+  },
+  "tabSize": 2,
+  "fontSize": 20,
+  "wordWrap": "on",
+  "lineNumbersMinChars": 3,
+  "wrappingIndent": "same",
+  "mouseWheelZoom": true,
+  "copyWithSyntaxHighlighting": true,
+  "theme": "vs-dark"
+}

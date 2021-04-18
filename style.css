@@ -1,0 +1,32 @@
+.scrollable .lm_content {
+  overflow: scroll;
+}
+.lm_splitter.lm_vertical .lm_drag_handle {
+  height: 15px;
+}
+.lm_splitter.lm_horizontal .lm_drag_handle {
+  width: 15px;
+}
+.gl-wrapper {
+  padding: 1rem;
+}
+body {
+  font-family: sans-serif;
+  color: #fff;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.15);
+}
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+}
