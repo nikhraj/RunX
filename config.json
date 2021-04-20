@@ -3,7 +3,7 @@
   "minimap": {
     "enabled": false
   },
-  "src":"code.cpp",
+  "src":"code.c++",
   "tabSize": 2,
   "fontSize": 20,
   "wordWrap": "on",

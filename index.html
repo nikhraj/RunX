@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<link rel='stylesheet' href='https://golden-layout.com/files/latest/css/goldenlayout-base.css'>
-<link rel='stylesheet' href='https://golden-layout.com/files/latest/css/goldenlayout-dark-theme.css'>
-<link rel="stylesheet" href="./style.css">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' href='https://golden-layout.com/files/latest/css/goldenlayout-base.css'>
+	<link rel='stylesheet' href='https://golden-layout.com/files/latest/css/goldenlayout-dark-theme.css'>
+	<link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
+	<div id="goldenify-a">
+		<div id="editor1">
+		</div>
+	</div>
+	<div id="goldenify-b">
+		<div id="editor2"></div>
+	</div>
+	<div id="goldenify-c">
+		<div id="editor3"></div>
+	</div>
+	<div id="goldenify-d">
+		<div id="editor4"></div>
+	</div>
 
-<div id="goldenify-a">
-    <wc-monaco-editor config="config.json"></wc-monaco-editor>
-</div>
 
-<div id="goldenify-b">
-	 <wc-monaco-editor src="input.txt"></wc-monaco-editor>
-</div>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'>
 
-<div id="goldenify-c">
-	 <h2> jhfdghjfd dfhjfd </h2>
-</div>
-<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>
-<script src='https://code.jquery.com/jquery-1.11.1.min.js'></script>
-<script src='https://golden-layout.com/files/latest/js/goldenlayout.min.js'></script>
-<script  src="./script.js"></script>
-  <!-- <wc-monaco-editor style="height:700px;width:700px" ></wc-monaco-editor> -->
- 
+	</script>
+	<script src='https://golden-layout.com/files/latest/js/goldenlayout.min.js'>
+
+	</script>
+
+	<script src='https://unpkg.com/monaco-editor@0.10.1/min/vs/loader.js'>
+
+	</script>
+    <script src="script2.js"></script>
+	<script src="script.js">
+    
+
+	</script>
+
+	<!-- <wc-monaco-editor style="height:700px;width:700px" ></wc-monaco-editor> -->
+
 </body>
+
 </html>

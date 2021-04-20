@@ -6,7 +6,7 @@ var config = {
     },
     dimensions:{
         headerHeight:40,
-        borderWidth: 5,
+        borderWidth: 7,
     },
 	content: [{
 		type: 'row',
@@ -27,12 +27,21 @@ var config = {
 					html: getContent('#goldenify-b')
 				}
 			}, {
+				type: 'stack',
+                content: [{
 				type: 'component',
 				componentName: 'gridComponent',
-                title: 'output.txt',
+				title: 'output.txt',
 				componentState: {
-					html: getContent('#goldenify-c')
-				}
+					html: getContent('#goldenify-c')}
+                },
+                {
+                type:'component',
+				componentName: 'gridComponent',
+                title: 'error.txt',
+				componentState: {
+					html: getContent('#goldenify-d')},
+                }]
 			}]
 		}]
 	}]
@@ -54,3 +63,15 @@ function getContent(selector) {
 
 	return html;
 }
+
+myLayout.on("stackCreated", (stack) => {
+        const maximizeElement = stack.element.find(".lm_maximise")[0];
+        stack.on("maximised", () => {
+          console.log("is maximized here");
+        });
+
+        stack.on("minimised", () => {
+          console.log("is minimized here");
+        });
+      });
+

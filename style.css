@@ -1,21 +1,40 @@
+#editor1, #editor2, #editor3, #editor4{
+  width: 100% !important;
+  height: 100% !important;
+}
+.monaco-editor{
+    position: relative!important;
+}
 .scrollable .lm_content {
   overflow: scroll;
 }
 .lm_splitter.lm_vertical .lm_drag_handle {
-  height: 15px;
+  height: 20px;
 }
 .lm_splitter.lm_horizontal .lm_drag_handle {
-  width: 15px;
+  width: 20px;
 }
 .gl-wrapper {
-  padding: 1rem;
+    
+  padding: 0rem;
+}
+.lm_root{
+background: #0d101e!important;
+}
+.lm_tabs{
+    padding:0!important;
+    margin: 0!important;
 }
 .lm_tab {
-  height: 30px !important;
-  line-height:30px;
+   background: #1d2333 !important;
+  height: 35px !important;
+  line-height:35px;
   font-size: 15px!important;
 }
-
+.lm_items .lm_maximised{
+    max-width: 100% !important;
+    max-height:100% !important;
+}
 .lm_close_tab {
   height: 30px !important;
   line-height: 28px!important;
