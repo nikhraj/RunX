@@ -1,10 +1,10 @@
 #editor1, #editor2, #editor3, #editor4{
+  min-height: 100%;
+    min-width: 100%;
   width: 100% !important;
   height: 100% !important;
 }
-.monaco-editor{
-    position: relative!important;
-}
+
 .scrollable .lm_content {
   overflow: scroll;
 }
@@ -19,14 +19,14 @@
   padding: 0rem;
 }
 .lm_root{
-background: #0d101e!important;
+background: #0d101e;
 }
 .lm_tabs{
     padding:0!important;
     margin: 0!important;
 }
 .lm_tab {
-   background: #1d2333 !important;
+  background: #1d2333;
   height: 35px !important;
   line-height:35px;
   font-size: 15px!important;
@@ -40,13 +40,26 @@ background: #0d101e!important;
   line-height: 28px!important;
   font-size: 15px !important;
 }
+.lm_header{
+      background: #0d101e;
+}
+.lm_tab{
+    padding-bottom:3px!important;   
+    box-shadow: none!important;
+}
+.lm_active{
+    padding-bottom:3px!important;   
+    border-left: 3px solid #47cf73 !important;
+    
+    box-shadow: none!important;
+}
 
 .lm_controls {
   top:10px;
 }
 body {
   font-family: sans-serif;
-  color: #fff;
+
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -63,4 +76,103 @@ body {
 ::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.2);
+}
+
+#goldenify-a {
+    display: flex;
+    flex-direction: column;
+     position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+
+@-webkit-keyframes gradient {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+.navbar2 {
+        position: relative;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        flex-direction: row;
+        width: 100%;
+        margin: 0 auto;
+        padding: 1.2rem 1.2rem;
+        background: #1d2333;
+    }
+
+.navbar2:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 4px;
+    background-position: 0% 0%;
+    background: -webkit-gradient(linear, left top, right top, from(#B294FF), color-stop(#57E6E6), color-stop(#FEFFB8), color-stop(#57E6E6), color-stop(#B294FF), to(#57E6E6));
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background-size: 500% auto;
+    -webkit-animation: gradient 3s linear infinite;
+    animation: gradient 3s linear infinite;
+}
+
+
+.navbar{
+        position: relative;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        flex-direction: row;
+        width: 100%;
+        margin: 0 auto;
+        padding: 1.2rem 1.2rem;
+        background: #1d2333;
+    }
+
+.navbar:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 3px;
+    background-position: 0% 0%;
+    background: #FFDD40;
+    background: #FFDD40;
+    background-size: 500% auto;
+    -webkit-animation: gradient 3s linear infinite;
+    animation: gradient 3s linear infinite;
+}
+
+.loading {
+  animation: rotation 3s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

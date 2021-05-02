@@ -53,6 +53,7 @@ myLayout.registerComponent('gridComponent', function(container, componentState) 
 	container.getElement().html(componentState.html);
 });
 
+
 myLayout.init();
 
 function getContent(selector) {
@@ -64,6 +65,8 @@ function getContent(selector) {
 	return html;
 }
 
+
+/*
 myLayout.on("stackCreated", (stack) => {
         const maximizeElement = stack.element.find(".lm_maximise")[0];
         stack.on("maximised", () => {
@@ -74,4 +77,4 @@ myLayout.on("stackCreated", (stack) => {
           console.log("is minimized here");
         });
       });
-
+*/
