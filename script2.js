@@ -42,20 +42,21 @@ var pythonSource = "print(\"hello, world\")";
 
 var sources = {"c":cSource,"cpp":cppSource,"java":javaSource,"py":pythonSource};
 
-var titles = {"c":"code.h","cpp":"code.cpp","java":"code.java","py":"code.py"}
+var titles = {"c":"code.h","cpp":"code.cpp","java":"code.java","py":"code.py"};
+
+var monacolang = {"c":"c","cpp":"cpp","java":"java","py":"python"};
 
 	let editor1 = monaco.editor.create(document.getElementById('editor1'), {
         automaticLayout: true,
-        scrollBeyondLastLine: false,
+        scrollBeyondLastLine: true,
 		value: cppSource,
-		language: 'cpp',
+		language: "cpp",
 		theme: 'vs-dark',
         minimap: {
             enabled: false,
         },
         fontSize: fontSize,
         scrollbar: {
-		useShadows: true,
 		vertical: "visible",
 		horizontal: "visible",
 		verticalScrollbarSize: 10,
@@ -67,7 +68,6 @@ var titles = {"c":"code.h","cpp":"code.cpp","java":"code.java","py":"code.py"}
         automaticLayout: true,
         scrollBeyondLastLine: false,
         value:['Enter input here, remove this line and give input if any !'].join('\n'),
-		src: 'code.cpp',
 		theme: 'vs-dark',
         language: "text/plain",
 	    
@@ -91,7 +91,6 @@ var titles = {"c":"code.h","cpp":"code.cpp","java":"code.java","py":"code.py"}
 			'Your output will be displayed here !',
 			'Tip : Use ctrl +/- to change fontsize',			
 		].join('\n'),
-		language: 'javascript',
 		theme: 'vs-dark',
         minimap: {
             enabled: false,
@@ -162,7 +161,7 @@ $(".lm_header").css("background","#0d101e");
 monaco.editor.setTheme('myTheme');
 $('#theme').dropdown('setting', 'onChange', function(){
     value = $('#theme').dropdown('get value');
-    console.log(value);
+    //console.log(value);
     if(value=='dark')
     {
         $("#navbar").css("background", "#282923");
@@ -194,7 +193,10 @@ $('#theme').dropdown('setting', 'onChange', function(){
 });
 var lan="cpp";
 $('#lang').dropdown('setting', 'onChange', function(){
+    sources[lan]=editor1.getValue();
     lan = $('#lang').dropdown('get value');
+   // editor1.updateOptions({language: monacolang[lan]});
+    monaco.editor.setModelLanguage(editor1.getModel(), monacolang[lan]);
     editor1.setValue(sources[lan]);
     $(".lm_title")[0].innerText = titles[lan];
 
@@ -207,8 +209,13 @@ function editorsUpdateFontSize(fontSize) {
     editor4.updateOptions({fontSize: fontSize});
 }
 
+var out_audio = new Audio('outputaudio.mp3');
+var run_audio = new Audio('runaudio.wav');
+//var btn_audio = new Audio('buttonaudio.mp3');
+
 $("body").keydown(function (e) {
         var keyCode = e.keyCode || e.which;
+        
         if (keyCode == 120) { // F9
             e.preventDefault();
             $("#run").trigger("click");
@@ -217,7 +224,7 @@ $("body").keydown(function (e) {
             e.preventDefault();
             fontSize += 1;
             editorsUpdateFontSize(fontSize);
-        } else if (event.ctrlKey && keyCode == 109) { // Ctrl+-
+        } else if (event.ctrlKey && keyCode == 109) { // Ctrl--
             e.preventDefault();
             fontSize -= 1;
             editorsUpdateFontSize(fontSize);
@@ -225,11 +232,71 @@ $("body").keydown(function (e) {
     });
 
 
+$("#setbk").click(function set_bookmark(){
+        myStorage = window.localStorage;
+        var filename = "code.cpp"; 
+        var json_str = localStorage.getItem('mycodes');
+        if(!json_str){
+           json_str = "";
+           localStorage.setItem('mycodes', json_str);
+        }
+        if(json_str.length > 0)
+           var mainObj = JSON.parse(json_str);
+        else
+           var mainObj = [];
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var n = new Date().toLocaleDateString("en-IN", options);
+
+        var f = 1;
+        for(var i=0;i<mainObj.length;i++)
+        {
+            if(mainObj[i].filename==filename)
+            {
+                f=0;
+                mainObj[i].code = editor1.getValue();
+                mainObj[i].input = editor2.getValue();
+                break;
+            }
+        }
+        if(f)
+        {
+            mainObj.push({filename:"code.cpp",code:editor1.getValue(),input:editor2.getValue(),date:n});
+        }
+
+        var json_str = JSON.stringify(mainObj);
+        localStorage.setItem('mycodes', json_str);
+        console.log(json_str);
+});
+
+$("#getbk").click(function get_bookmark(){
+    myStorage = window.localStorage;
+    var filename = "code.cpp";
+    var json_str = localStorage.getItem('mycodes');
+   //console.log(json_str);
+    var mainObj = JSON.parse(json_str);
+   //console.log(mainObj);
+   for(var i=0;i<mainObj.length;i++)
+   {
+       if(mainObj[i].filename==filename)
+       {
+        var code = mainObj[i].code;
+        var input = mainObj[i].input;   
+        editor1.setValue(code);
+        editor2.setValue(input);
+       }
+   }
+   // console.log(filename);
+    //console.log(code);
+   
+    
+        
+});
 //console.log(editor1.getValue());
 
 //console.log(editor2.getValue());
   
 $("#run").click(function run(){
+    run_audio.play();
     $('#navbar').removeClass('navbar').addClass('navbar2');
 
     $('#load').removeClass('play').addClass('circle').removeClass('icon').addClass('icon').addClass('notch').addClass('loading');
@@ -254,7 +321,17 @@ $("#run").click(function run(){
 
   axios(config)
   .then(function (response) {
-     //console.log(response);
+    run_audio.pause();
+    out_audio.play();
+     $('#navbar')
+      .toast({
+        message: 'Execution Complete,Please Check Output!',
+        class : 'olive',
+        className: {
+        toast: 'ui message'
+    }
+      })
+     console.log(response);
      $('#load').removeClass();
       $('#navbar').removeClass('navbar2').addClass('navbar');
        $('#load').addClass('play').addClass('icon');
@@ -268,6 +345,5 @@ $("#run").click(function run(){
     // document.getElementById("editor4").innerHTML=error;
   });
 });
-
 
 });

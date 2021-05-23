@@ -3,15 +3,12 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='stylesheet' href='https://golden-layout.com/files/latest/css/goldenlayout-base.css'>
-	<link rel='stylesheet' href='https://golden-layout.com/files/latest/css/goldenlayout-dark-theme.css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/golden-layout/2.0.0/css/goldenlayout-base.min.css">
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/golden-layout/2.0.0/css/themes/goldenlayout-dark-theme.min.css'>
 	<link rel="stylesheet" href="./style.css">
 	<!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js">
-	</script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css">
+   
 </head>
 
 <body>
@@ -22,7 +19,7 @@
     
   <div id="lang" class="ui teal dropdown labeled icon button large">
     <i class="code icon"></i>
-    <span id="lang" class="text">Language</span>
+    <span id="lang">Language</span>
     <div class="menu">
         <div class="ui icon search input">
         <i class="search icon"></i>
@@ -35,24 +32,19 @@
         </div>
         <div class="scrolling menu">
         <div class="selected item" data-value="cpp">
-            <div class="ui orange empty circular label"></div>
-            C++
+             <img src="c-plusplus.svg" style="padding:5px;">
+            <span class="text">C++</span>
         </div>
         <div class="item" data-value="c">
-            <div class="ui red empty circular label"></div>
-            C
+             <img src="c.svg" style="padding:5px;">
+            <span class="text">C</span>
         </div>
         <div class="item" data-value="java">
-            <i class="java icon" style="color:#f89820"></i>
-            Java
+            <img src="java.svg" style="padding:5px;">
+            <span class="text">Java</span>
         </div>
         <div class="item" data-value="py">
-            <i class="python icon" style="color:#4B8BBE"></i>
-            Python
-        </div>
-        <div class="item" data-value="html">
-           <i class="html5 icon" style="color:#e34c26"></i>
-            HTML
+            <img src="python.svg" style="padding:5px;"><span class="text">Python</span>
         </div>
         </div>
     </div>
@@ -62,7 +54,7 @@
     
   <div id="theme" class="ui blue dropdown labeled icon button large" >
     <i class="edit icon"></i>
-    <span id="theme" class="text">Theme</span>
+    <span id="theme">Theme</span>
     <div class="menu">
         <div class="ui icon search input">
         <i class="search icon"></i>
@@ -90,8 +82,16 @@
         </div>
     </div>
     </div>
+   
     </a>
-  <div class="center menu" style="margin-left:27%!important;">
+    
+    <div class="item">
+    <button id="setbk" class="ui red button large">S</button>
+    </div>
+    <div class="item">
+    <button id="getbk" class="ui yellow button large">G</button>
+    </div>
+  <div class="center menu" style="margin-left:15%!important;">
       <div class="item">
         <div class="ui primary green button large" id="run"><i id="load" class="play icon"></i>Run (F9)</div>
     </div>
@@ -111,15 +111,21 @@
 	<div id="goldenify-d">
 		<div id="editor4"></div>
 	</div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
-	<script src='https://golden-layout.com/files/latest/js/goldenlayout.min.js'>
-
-	</script>
-
-	<script src='https://unpkg.com/monaco-editor@0.10.1/min/vs/loader.js'>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/golden-layout/1.0.10/goldenlayout.min.js'>
 
 	</script>
+
+	<script src='https://unpkg.com/monaco-editor@0.10.1/min/vs/loader.js'></script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js">
+	</script>
+
+	
 	<script src="script2.js">
 
 	</script>

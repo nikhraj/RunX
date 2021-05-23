@@ -4,7 +4,12 @@
   width: 100% !important;
   height: 100% !important;
 }
-
+.lm_active::marker {
+    unicode-bidi: none !important;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+}
 .scrollable .lm_content {
   overflow: scroll;
 }
@@ -25,6 +30,7 @@ background: #0d101e;
     padding:0!important;
     margin: 0!important;
 }
+
 .lm_tab {
   background: #1d2333;
   height: 35px !important;

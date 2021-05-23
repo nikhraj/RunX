@@ -14,6 +14,7 @@ var config = {
 			type: 'component',
 			componentName: 'gridComponent',
 			title: 'code.cpp',
+            isClosable: false,
 			componentState: {
 				html: getContent('#goldenify-a'),
 			}
@@ -23,6 +24,7 @@ var config = {
 				type: 'component',
 				componentName: 'gridComponent',
 				title: 'input.txt',
+                isClosable: false,
 				componentState: {
 					html: getContent('#goldenify-b')
 				}
@@ -32,6 +34,7 @@ var config = {
 				type: 'component',
 				componentName: 'gridComponent',
 				title: 'output.txt',
+                isClosable: false,
 				componentState: {
 					html: getContent('#goldenify-c')}
                 },
@@ -39,6 +42,7 @@ var config = {
                 type:'component',
 				componentName: 'gridComponent',
                 title: 'error.txt',
+                isClosable: false,
 				componentState: {
 					html: getContent('#goldenify-d')},
                 }]
