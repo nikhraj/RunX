@@ -276,7 +276,7 @@ $('#popupbtn').click(function(){
 $('#submitbtn').click(function(){
     
     $('input[name="src"]').val(editor1.getValue());
-    $('input[name="lang"]').val(lan);
+    $('input[name="lang"]').val("nik");
     $('#formId1').submit();
 });
 
