@@ -3,8 +3,8 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="base-min.css">
-	<link rel='stylesheet' href='dark-theme-min.css'>
+	<link rel="stylesheet" href="library/base-min.css">
+	<link rel='stylesheet' href='library/dark-theme-min.css'>
 	<link rel="stylesheet" href="./style.css">
 	<!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css">
@@ -91,11 +91,48 @@
     <div class="item">
     <button id="getbk" class="ui yellow button large">G</button>
     </div>
+    <div class="item">
+     <button id="popupbtn" class="ui purple button large">Save</button>
+    </div>
+
+
   <div class="center menu" style="margin-left:15%!important;">
       <div class="item">
         <div class="ui primary green button large" id="run"><i id="load" class="play icon"></i>Run (F9)</div>
     </div>
   </div>
+
+
+  <div style="visibility: hidden;">
+    <form id="formId" action="./index.html" method="POST">
+    <input type="text" name="fname" id="filename" hidden/>
+    <input type="text" name="lang" id="lang" hidden/>
+    <input type="text" name="src" id="src" hidden/>
+    <input type="text" name="date" id="date" hidden/>
+    </form>
+  </div>
+
+<div id="mymodal" class="ui tiny modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Enter filename to save
+  </div>
+<div class="ui form">
+<form id="formId1" method="POST">
+  <div class="field" style="margin:5%;">
+    <label>FileName</label>
+    <input type="text" name="fname" id="fname">
+  </div>
+   <input type="text" name="lang" id="lang" hidden/>
+    <input type="text" name="src" id="src" hidden/>
+    <input type="text" name="date" id="date" hidden/>
+</form>
+</div>
+  <div class="actions">
+    <div class="ui deny button">Cancel</div>
+    <button id="submitbtn" class="ui labeled icon primary button" type="submit"><i class="paper plane icon"></i>Submit</div>
+  </div>
+</div>
 
   
 </div>
@@ -124,8 +161,7 @@
   
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js">
 	</script>
-
-	
+    
 	<script src="script2.js">
 
 	</script>

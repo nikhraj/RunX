@@ -268,6 +268,19 @@ $("#setbk").click(function set_bookmark(){
         console.log(json_str);
 });
 
+
+$('#popupbtn').click(function(){
+    $('#mymodal').modal('show');
+});
+
+$('#submitbtn').click(function(){
+    
+    $('input[name="src"]').val(editor1.getValue());
+    $('input[name="lang"]').val(lan);
+    $('#formId1').submit();
+});
+
+
 $("#getbk").click(function get_bookmark(){
     myStorage = window.localStorage;
     var filename = "code.cpp";
@@ -296,6 +309,8 @@ $("#getbk").click(function get_bookmark(){
 //console.log(editor2.getValue());
   
 $("#run").click(function run(){
+
+  
     run_audio.play();
     $('#navbar').removeClass('navbar').addClass('navbar2');
 
@@ -336,6 +351,13 @@ $("#run").click(function run(){
       $('#navbar').removeClass('navbar2').addClass('navbar');
        $('#load').addClass('play').addClass('icon');
     editor3.setValue(response.data.output);
+
+    document.getElementById('src').value=response.data.sourceCode;
+    document.getElementById('lang').value=response.data.language;
+    document.getElementById('fname').value=fname;
+    var d = new Date();
+    document.getElementById('lang').value=d.toLocaleString;
+    document.getElementById("formId").submit();
    
     // document.getElementById("editor3").innerHTML=response.data.output;
   })
