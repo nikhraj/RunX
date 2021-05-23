@@ -210,7 +210,7 @@ function editorsUpdateFontSize(fontSize) {
 }
 
 var out_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/outputaudio.mp3');
-var run_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/runaudio.wav');
+var run_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/runaudio.mp3');
 //var btn_audio = new Audio('buttonaudio.mp3');
 
 $("body").keydown(function (e) {
