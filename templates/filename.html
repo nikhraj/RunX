@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
 </head>
 
 <body>
@@ -35,27 +35,25 @@
         </div>
         <div class="scrolling menu">
         <div class="selected item" data-value="cpp">
-             <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c-plusplus.svg" style="padding:5px;">
+             <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c-plusplus.svg" style="padding:5px;">
             <span class="text">C++</span>
         </div>
         <div class="item" data-value="c">
-             <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c.svg" style="padding:5px;">
+             <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c.svg" style="padding:5px;">
             <span class="text">C</span>
         </div>
         <div class="item" data-value="java">
-            <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/java.svg" style="padding:5px;">
+            <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-EditorRunX/icons/java.svg" style="padding:5px;">
             <span class="text">Java</span>
         </div>
         <div class="item" data-value="py">
-            <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/python.svg" style="padding:5px;"><span class="text">Python</span>
+            <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/python.svg" style="padding:5px;"><span class="text">Python</span>
         </div>
         </div>
     </div>
     </div>
     </div>
-   <input type="text" name="lang" id="lang" hidden/>
-    <input type="text" name="src" id="src" hidden/>
-    <input type="text" name="date" id="date" hidden/>
+   <input type="hidden" name="lang" id="lan">
 </form>
 </div>
   <div class="actions">
@@ -64,19 +62,21 @@
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
 <script>
 $( document ).ready(function() {
     $('#mymodal').modal('show');
 });
 var lan="cpp";
+$('#lan').attr('value',lan);
+$('#ext').text('.'+lan);
 $('#lang').dropdown('setting', 'onChange', function(){
    // sources[lan]=editor1.getValue();
     lan = $('#lang').dropdown('get value');
    // editor1.updateOptions({language: monacolang[lan]});
-   $('input[name="lang"]').val(lan);
+   $('#lang').attr('value',lan);
    $('#ext').text('.'+lan);
 
 });

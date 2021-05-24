@@ -1,17 +1,14 @@
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.semanticui.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js">
-	</script>
     
     <style>
         body {
-            font-size:16px;
+            font-size:15px;
         }
         a{
             color:#000000;
@@ -87,8 +84,12 @@
     </table>
     </div>
     </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js">
+  </script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.semanticui.min.js"></script>
+
 <script>
     $(document).ready(function() {
     $('#example').DataTable({
@@ -96,7 +97,7 @@
     });
 });
 
-        imgdict = {'cpp':'https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c-plusplus.svg','c':'https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c.svg','py':'https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/python.svg','java':'https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/java.svg'}
+        imgdict = {'cpp':'https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c-plusplus.svg','c':'https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c.svg','py':'https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/python.svg','java':'https://cdn.jsdelivr.net/gh/RunX/icons/java.svg'}
         myStorage = window.localStorage;
             
         var json_str = localStorage.getItem('mycodes');

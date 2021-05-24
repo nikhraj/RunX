@@ -4,9 +4,9 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/library/base-min.css">
-	<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/library/dark-theme-min.css'>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/base-min.css">
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/dark-theme-min.css'>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/style.css">
 	<!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css">
    
@@ -16,7 +16,7 @@
 <div  id="navbar" class="navbar menu">
             
            
-  <a class="item">
+  <!--<a class="item">
     
   <div id="lang" class="ui teal dropdown labeled icon button large">
     <i class="code icon"></i>
@@ -50,10 +50,17 @@
         </div>
     </div>
     </div>
-    </a>
+    </a>-->
+    <a class="item" href="bookmarks" target="_blank">
+    
+  <div class="ui teal labeled icon button large">
+          <i class="folder icon"></i>
+    <span>MyFiles</span>
+      </div>
+      </a>
   <a class="item">
     
-  <div id="theme" class="ui blue dropdown labeled icon button large" >
+  <div id="theme" style="margin-left:0.6em" class="ui blue dropdown labeled icon button large" >
     <i class="edit icon"></i>
     <span id="theme">Theme</span>
     <div class="menu">
@@ -92,13 +99,12 @@
     <div class="item">
     <button id="getbk" class="ui yellow button large">G</button>
     </div>-->
-     <div class="item">
-     <button id="popupbtn" class="ui purple button large">Save</button>
+     <div class="item" style="margin-left:0.6em">
+     <div id="popupbtn" class="ui labeled icon brown button large"><i class="save icon"></i>Save</div>
     </div>
-  <div class="center menu" style="margin-left:15%!important;">
-      <div class="item">
+ 
+      <div class="center item" style="margin-left:13%;">
         <div class="ui primary green button large" id="run"><i id="load" class="play icon"></i>Run (F9)</div>
-    </div>
   </div>
 
   
@@ -142,14 +148,14 @@
      <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
 
-	<script src='https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/library/goldenlayout.js'>
+	<script src='https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/goldenlayout.js'>
 
 	</script>
 
-	<script src='https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/library/loader.js'></script>
+	<script src='https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/loader.js'></script>
 
     
-    <script src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/library/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/axios.js"></script>
    <!-- <script src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/script2.js">
 
 	</script> -->
@@ -175,7 +181,7 @@ var cSource = "\
 #include <stdio.h>\n\
 \n\
 int main(void) {\n\
-    printf(\"hello, world\\n\");\n\
+    printf(\"Welcome to RunX!\\n\");\n\
     return 0;\n\
 }\n\
 ";
@@ -184,7 +190,7 @@ var cppSource = "\
 #include <iostream>\n\
 using namespace std;\n\
 int main() {\n\
-    cout << \"hello, world\" << endl;\n\
+    cout << \"Welcome to RunX!\" << endl;\n\
     return 0;\n\
 }\n\
 ";
@@ -192,12 +198,12 @@ int main() {\n\
 var javaSource = "\
 public class Main {\n\
     public static void main(String[] args) {\n\
-        System.out.println(\"hello, world\");\n\
+        System.out.println(\"Welcome to RunX!\");\n\
     }\n\
 }\n\
 ";
 
-var pythonSource = "print(\"hello, world\")";
+var pythonSource = "print(\"Welcome to RunX!\")";
 
         var sources = {"c":cSource,"cpp":cppSource,"java":javaSource,"py":pythonSource};
 
@@ -351,15 +357,6 @@ var pythonSource = "print(\"hello, world\")";
             }
         });
         var lan="cpp";
-        $('#lang').dropdown('setting', 'onChange', function(){
-            sources[lan]=editor1.getValue();
-            lan = $('#lang').dropdown('get value');
-        // editor1.updateOptions({language: monacolang[lan]});
-            monaco.editor.setModelLanguage(editor1.getModel(), monacolang[lan]);
-            editor1.setValue(sources[lan]);
-            $(".lm_title")[0].innerText = titles[lan];
-
-        });
         
         var data = JSON.parse("{{data|escapejs}}");
         monaco.editor.setModelLanguage(editor1.getModel(), monacolang[data['lang']]);
@@ -368,6 +365,10 @@ var pythonSource = "print(\"hello, world\")";
         if(data['src']!='')
         {
             editor1.setValue(data['src']);
+        }
+        else
+        {
+            editor1.setValue(sources[lan]);
         }
         $('#fname').attr('value', data['fname']);
 
@@ -378,8 +379,8 @@ var pythonSource = "print(\"hello, world\")";
             editor4.updateOptions({fontSize: fontSize});
         }
 
-        var out_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/outputaudio.mp3');
-        var run_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/runaudio.mp3');
+        var out_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/RunX/audio/outputaudio.mp3');
+        var run_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/RunX/audio/runaudio.mp3');
         //var btn_audio = new Audio('buttonaudio.mp3');
 
         $("body").keydown(function (e) {
@@ -544,7 +545,7 @@ var pythonSource = "print(\"hello, world\")";
     </script>
 
     
-    <script src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/script.js"></script>
     
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js">
