@@ -1,0 +1,93 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+<div id="mymodal" class="ui tiny modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Please Enter filename and select language
+  </div>
+<div class="ui form">
+<form id="formId1" method="POST">
+     {% csrf_token %}
+  <div class="inline field" style="margin:5%">
+    <div class="ui input">
+        <input type="text" placeholder="Enter file name" name="fname" id="fname">
+        </div>
+       <b> <span id="ext" style="font-size:16px">.cpp</span></b>
+  </div>
+  <div class="field" style="margin:5%;">
+  <div id="lang" class="ui teal dropdown labeled icon button large">
+    <i class="code icon"></i>
+    <span class="text">Language</span>
+    <div class="menu">
+        <div class="ui icon search input">
+        <i class="search icon"></i>
+        <input type="text" placeholder="Search language...">
+        </div>
+        <div class="divider"></div>
+        <div class="header">
+        <i class="code icon"></i>
+        Select language
+        </div>
+        <div class="scrolling menu">
+        <div class="selected item" data-value="cpp">
+             <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c-plusplus.svg" style="padding:5px;">
+            <span class="text">C++</span>
+        </div>
+        <div class="item" data-value="c">
+             <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c.svg" style="padding:5px;">
+            <span class="text">C</span>
+        </div>
+        <div class="item" data-value="java">
+            <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/java.svg" style="padding:5px;">
+            <span class="text">Java</span>
+        </div>
+        <div class="item" data-value="py">
+            <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/python.svg" style="padding:5px;"><span class="text">Python</span>
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+   <input type="text" name="lang" id="lang" hidden/>
+    <input type="text" name="src" id="src" hidden/>
+    <input type="text" name="date" id="date" hidden/>
+</form>
+</div>
+  <div class="actions">
+    <div class="ui deny button">Cancel</div>
+    <button id="submitbtn" class="ui labeled icon primary button" type="submit"><i class="paper plane icon"></i>Submit</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+$( document ).ready(function() {
+    $('#mymodal').modal('show');
+});
+var lan="cpp";
+$('#lang').dropdown('setting', 'onChange', function(){
+   // sources[lan]=editor1.getValue();
+    lan = $('#lang').dropdown('get value');
+   // editor1.updateOptions({language: monacolang[lan]});
+   $('input[name="lang"]').val(lan);
+   $('#ext').text('.'+lan);
+
+});
+
+$('#submitbtn').click(function(){
+    
+   // $('input[name="src"]').val(editor1.getValue());
+   // $('input[name="lang"]').val("nik");
+    $('#formId1').submit();
+});
+</script>
+
+</body>
+</html>

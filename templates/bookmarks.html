@@ -1,0 +1,133 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.semanticui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js">
+	</script>
+    
+    <style>
+        body {
+            font-size:16px;
+        }
+        a{
+            color:#000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="twelve wide column" style="margin-top:5%;">
+        <div class="ui centered grid container">
+<table id="example" class="ui celled table" style="width:100%">
+<thead>
+  <tr>  
+      <th>FileName</th>
+      <th>Date</th>
+      <th>Last Edit</th>
+    </tr>
+  </thead>
+  <tbody id="mydata">
+    <tr>
+      <td class="collapsing">
+        <a href="https://trohs.xyz/codeforces">
+        <img class="ui avatar image" src="c-plusplus.svg" style="padding-right:5px;">code.cpp
+        </a>
+      </td>
+      <td>23/04/2021</td>
+      <td>9 hours ago</td>
+    </tr>
+    <tr>
+    
+      <td>
+    <a href="https://trohs.xyz/codeforces">
+        <img class="ui avatar image" src="python.svg" style="padding-right:5px;">practical1.py</a>
+      </td>
+      <td>19/04/2021</td>
+      <td>1 month ago</td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://trohs.xyz/codeforces">
+        <img class="ui avatar image" src="c-plusplus.svg" style="padding-right:5px;">GT_prac1.cpp</a>
+      </td>
+      <td>23/05/2021</td>
+      <td>2 days ago</td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://trohs.xyz/codeforces">
+        <img class="ui avatar image" src="java.svg" style="padding-right:5px;">GT_prac2.java
+        </a>
+      </td>
+      <td>09/12/2020</td>
+      <td >10 hours ago</td>
+    </tr>
+    <tr>
+      <td>
+    <a href="https://trohs.xyz/codeforces">
+       <img class="ui avatar image" src="c.svg" style="padding-right:5px;">ads_prac.c
+    </a>
+      </td>
+      <td>23/04/2021</td>
+      <td>16 hours ago</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="3">
+        <a href="https://runx.nikraj.repl.co/" target="_blank"><div class="ui right floated primary labeled icon button">
+          <i class="plus circle icon" style="padding-right:5px;"></i> Create New
+        </div></a>
+      </th>
+    </tr>
+  </tfoot>
+    </table>
+    </div>
+    </div>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.semanticui.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable({
+        "order": [[ 1, "desc" ]]
+    });
+});
+
+        imgdict = {'cpp':'https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c-plusplus.svg','c':'https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c.svg','py':'https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/python.svg','java':'https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/java.svg'}
+        myStorage = window.localStorage;
+            
+        var json_str = localStorage.getItem('mycodes');
+        //console.log(json_str);
+        var mainObj = JSON.parse(json_str);
+        //console.log(mainObj);
+        var k='';
+        for(var i=0;i<mainObj.length;i++)
+        { 
+            var uid = mainObj[i].uid;
+            var fname = mainObj[i].filename;
+            var date = mainObj[i].date;
+            var lang = mainObj[i].lang;   
+            var imurl = imgdict[lang];
+            //var a = new Date(); 
+            //var d = (mainObj[i].date-a)/(1000*60*60);
+
+            k+=`<tr>
+            <td class="collapsing">
+                <a href="https://runx.nikraj.repl.co/${uid}">
+                <img class="ui avatar image" src="${imurl}" style="padding-right:5px;">${fname}
+                </a>
+            </td>
+            <td>${date}</td>
+            <td>2 hours ago</td>
+            </tr>`
+        }
+
+        document.getElementById('mydata').innerHTML=k;
+
+</script>
+
+</body>
+</html>

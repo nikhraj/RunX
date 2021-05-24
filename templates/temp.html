@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<body>
+    <div style="width: 40%;
+    border: 1px solid black;
+    background-color: lightcyan;
+    font-family: Helvetica, sans-serif;">
+        <div style="margin: 5%;">
+            <h1>
+                <u>Dictionary Data</u>
+            </h1>
+            <h2>
+                <u>All Data</u>
+            </h2>
+            <h4 id='alldata'></h4><br>
+            <h2>
+                <u>Neat Data</u>
+            </h2>
+            <h4 id='neatdata'></h4>
+        </div>
+    </div>
+
+<script>
+    var data = JSON.parse("{{data|escapejs}}");
+    var dataNode = document.getElementById('alldata');
+    dataNode.innerHTML+="{{data|escapejs}}";
+    dataNode = document.getElementById('neatdata');
+    for(var x in data){
+        dataNode.innerHTML+=x+' : '+data[x]+'<br><br>';
+    }
+</script>
+
+
+    </body>
+</html>
