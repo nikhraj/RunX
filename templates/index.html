@@ -4,17 +4,24 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="#" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/base-min.css">
-	<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/dark-theme-min.css'>
+	<meta name="title" content="RunX | Best way to compile, run and save code online">
+    <meta name="description" content="We are providing best UI to Compile, Run, Debug  and save your codes online. Supported languages are C,C++,Python and Java.">
+    <meta name="keywords" content="compiler,C,C++,Java,Python">
+    <meta name="robots" content="index, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <title>RunX - CodeEditor</title>
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/golden-layout@1.5.9/src/css/goldenlayout-base.css">
+
+	<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/golden-layout@1.5.9/src/css/goldenlayout-dark-theme.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/style.css">
 	<!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css">
-   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.css"/>
+     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/favicon/favicon.ico">
 </head>
 
 <body>
-<div  id="navbar" class="navbar menu">
+<div  id="navbar" class="navbar">
             
            
   <!--<a class="item">
@@ -54,14 +61,14 @@
     </a>-->
     <a class="item" href="bookmarks" target="_blank">
     
-  <div class="ui teal labeled icon button large">
+  <div class="ui teal labeled icon button medium">
           <i class="folder icon"></i>
     <span>MyFiles</span>
       </div>
       </a>
   <a class="item">
     
-  <div id="theme" style="margin-left:0.6em" class="ui blue dropdown labeled icon button large" >
+  <div id="theme" style="margin-left:0.4em" class="ui blue dropdown labeled icon button medium" >
     <i class="edit icon"></i>
     <span id="theme">Theme</span>
     <div class="menu">
@@ -100,13 +107,20 @@
     <div class="item">
     <button id="getbk" class="ui yellow button large">G</button>
     </div>-->
-     <div class="item" style="margin-left:0.6em">
-     <div id="popupbtn" class="ui labeled icon brown button large"><i class="save icon"></i>Save</div>
+     <div class="item" style="margin-left:0.4em">
+     <div id="popupbtn" class="ui labeled icon brown button medium"><i class="save icon"></i>Save</div>
     </div>
- 
-      <div class="center item" style="margin-left:13%;">
-        <div class="ui primary green button large" id="run"><i id="load" class="play icon"></i>Run (F9)</div>
-  </div>
+    <div class="item" style="margin-left:0.4em">
+     <div id="sharebtn" class="ui labeled icon purple button medium"><i class="share alternate icon"></i>Share</div>
+    </div>
+      <div class="item" style="margin:auto;">
+        <div class="ui green button medium" id="run"><i id="load" class="play icon"></i>Run (F9)</div>
+    </div>
+
+    <div class="item" style="margin-left: auto; 
+margin-right: 0;">
+        <img src="https://i.ibb.co/bWNfZWB/Screenshot-1629-removebg-preview.png" style="height:30px">
+    </div>
 
   
 </div>
@@ -117,7 +131,7 @@
     Change filename if you want
   </div>
 <div class="ui form">
-<form id="formId1" method="POST" action="">
+<form id="formId1" action="" method="POST">
    {% csrf_token %}
   <div class="field" style="margin:5%;">
     <label>FileName</label>
@@ -133,6 +147,27 @@
   </div>
 </div>
 
+
+<div id="sharemodal" class="ui tiny modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Share your file with others
+  </div>
+<div id="sharediv" style="display: flex;align-items: center;justify-content: center;">
+
+</div>
+
+<div class="actions" style="display: flex;align-items: center;justify-content: center;">
+    <div class="ui labeled button" tabindex="1">
+  <div class="ui teal button" id="copybtn">
+    <i class="copy icon"></i> Copy
+  </div>
+  <span id="sharelink" class="ui basic teal left pointing label">
+  </span>
+</div>   
+</div>
+
+
 	<div  id="goldenify-a">
 		<div id="editor1"></div>
 	</div>
@@ -145,7 +180,9 @@
 	<div id="goldenify-d">
 		<div id="editor4"></div>
 	</div>
-    
+     
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+
      <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
 
@@ -153,25 +190,24 @@
 
 	</script>
 
-	<script src='https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/loader.js'></script>
+	<script src='https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/vs/loader.js'></script>
 
-    
-    <script src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/axios.js"></script>
+   
    <!-- <script src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/script2.js">
 
 	</script> -->
-
+    
 
     <script>
-
-        require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.14.3/min/vs' }});
+        //const axios = require('axios').default;
+        require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/vs' }});
         window.MonacoEnvironment = { getWorkerUrl: () => proxy };
 
         let proxy = URL.createObjectURL(new Blob([`
             self.MonacoEnvironment = {
-                baseUrl: 'https://unpkg.com/monaco-editor@0.14.3/min/'
+                baseUrl: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/'
             };
-            importScripts('https://unpkg.com/monaco-editor@0.14.3/min/vs/base/worker/workerMain.js');
+            importScripts('https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/vs/base/worker/workerMain.js');
         `], { type: 'text/javascript' }));
 
         var fontSize = 20;
@@ -181,8 +217,8 @@
 var cSource = "\
 #include <stdio.h>\n\
 \n\
-int main(void) {\n\
-    printf(\"Welcome to RunX!\\n\");\n\
+int main() {\n\
+    printf(\"Welcome to RunX\\n\");\n\
     return 0;\n\
 }\n\
 ";
@@ -191,7 +227,7 @@ var cppSource = "\
 #include <iostream>\n\
 using namespace std;\n\
 int main() {\n\
-    cout << \"Welcome to RunX!\" << endl;\n\
+    cout << \"Welcome to RunX\" << endl;\n\
     return 0;\n\
 }\n\
 ";
@@ -199,12 +235,12 @@ int main() {\n\
 var javaSource = "\
 public class Main {\n\
     public static void main(String[] args) {\n\
-        System.out.println(\"Welcome to RunX!\");\n\
+        System.out.println(\"Welcome to RunX\");\n\
     }\n\
 }\n\
 ";
 
-var pythonSource = "print(\"Welcome to RunX!\")";
+var pythonSource = "print(\"Welcome to RunX\")";
 
         var sources = {"c":cSource,"cpp":cppSource,"java":javaSource,"py":pythonSource};
 
@@ -360,8 +396,9 @@ var pythonSource = "print(\"Welcome to RunX!\")";
         var lan="cpp";
         
         var data = JSON.parse("{{data|escapejs}}");
-        monaco.editor.setModelLanguage(editor1.getModel(), monacolang[data['lang']]);
-        $(".lm_title")[0].innerText = data['fname']+'.'+data['lang'];
+        lan = data['lang'];
+        monaco.editor.setModelLanguage(editor1.getModel(), monacolang[lan]);
+        $(".lm_title")[0].innerText = data['fname']+'.'+lan;
         
         if(data['src']!='')
         {
@@ -470,10 +507,71 @@ var pythonSource = "print(\"Welcome to RunX!\")";
             $('#mymodal').modal('show');
            
         });
+        var link = window.location.href;
+        var title = "Sharing my file using RunX";
+        var k=`<a href="https://api.whatsapp.com/send?text=${title} ${link}" data-action="share/whatsapp/share" target="_blank" style="margin:2%" class="ui circular whatsapp icon large button">
+<i class="whatsapp icon"></i>
+</a>
+<a style="margin:2%" href="https://www.facebook.com/sharer.php?u=${link}&t=${title}" target="_blank" class="ui circular facebook icon large button">
+  <i class="facebook icon"></i>
+</a>
+<a href="https://twitter.com/share?url=${link}&text=${title}" target="_blank" style="margin:2%" class="ui circular twitter icon large button">
+  <i class="twitter icon"></i>
+</a>
+<a style="margin:2%" href="https://www.linkedin.com/shareArticle?url=${link}&title=${title}" target="_blank" class="ui circular linkedin icon large button">
+  <i class="linkedin icon"></i>
+</a>
+<a href="mailto:?subject=${title}&body=${link}" target="_blank" style="margin:2%" class="ui circular google plus icon large button">
+  <i class="envelope icon"></i>
+</a>
+<a style="margin:2%" href="https://telegram.me/share/url?url=${link}&text=${title}" target="_blank" class="ui circular telegram plane icon large button">
+<i class="telegram plane icon"></i>
+</a>`;
+        $('#sharediv').html(k);
+        $('#sharebtn').click(function(){
+            
+            $('#sharelink').text(link);
+            $('#sharemodal').modal('show');
+        });
+        $('#copybtn').click(function(){
+            
+            var o=document.getElementById('sharelink'),t=document.createElement("textarea");t.value=o.textContent,document.body.appendChild(t),t.select(),document.execCommand("Copy"),t.remove(),
+            $('#sharemodal')
+            .toast({
+                message: 'Link copied to your clipboard.',
+                class : 'olive',
+                className: {
+                toast: 'ui message'
+            }
+            })
+        });
 
         $('#submitbtn').click(function(){
             
-            $('#src').attr('value', editor1.getValue());
+            var up = new Date().toLocaleString();
+            myStorage = window.localStorage;
+                
+            var json_str = localStorage.getItem('mycodes');
+            //console.log(json_str);
+            var mainObj = JSON.parse(json_str);
+            
+            for(var i=0;i<mainObj.length;i++)
+            {
+                 if(!mainObj[i])
+                    continue;
+                var uid = mainObj[i].uid;
+                var this_uid = "r"+data['uid'];
+                //console.log(this_uid);
+                if(this_uid === uid)
+                {
+                    //console.log(uid);
+                    mainObj[i].updatetime = up;
+                }
+            }
+            var json_str = JSON.stringify(mainObj);
+            localStorage.setItem('mycodes', json_str);
+            console.log(editor1.getValue());
+            $('#src').val(editor1.getValue());
             $('#formId1').submit();
         });
 
@@ -524,19 +622,12 @@ var pythonSource = "print(\"Welcome to RunX!\")";
             $('#navbar').removeClass('navbar2').addClass('navbar');
             $('#load').addClass('play').addClass('icon');
             editor3.setValue(response.data.output);
-
-            document.getElementById('src').value=response.data.sourceCode;
-            document.getElementById('lang').value=response.data.language;
-            document.getElementById('fname').value=fname;
-            var d = new Date();
-            document.getElementById('lang').value=d.toLocaleString;
-            document.getElementById("formId").submit();
         
             // document.getElementById("editor3").innerHTML=response.data.output;
         })
         .catch(function (error) {
-        // console.log(error);
-            editor4.setValue(error);
+            console.log(error);
+           // editor4.setValue(error);
             // document.getElementById("editor4").innerHTML=error;
         });
         });
@@ -544,12 +635,9 @@ var pythonSource = "print(\"Welcome to RunX!\")";
         });
 
     </script>
-
-    
     <script src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/script.js"></script>
-    
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js">
+	<script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.js">
 	</script>
    <!--- <script src="script3.js"> </script> -->
     
