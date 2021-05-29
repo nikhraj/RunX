@@ -31,6 +31,7 @@ var config = {
 				}
 			}, {
 				type: 'stack',
+                isClosable: false,
                 content: [{
 				type: 'component',
 				componentName: 'gridComponent',
