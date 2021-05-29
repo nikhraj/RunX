@@ -1,27 +1,45 @@
 <html>
 <head>
-  <link rel="shortcut icon" href="#" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="title" content="RunX | Best way to compile, run and save code online">
+    <meta name="description" content="We are providing best UI to Compile, Run, Debug  and save your codes online. Supported languages are C,C++,Python and Java.">
+    <meta name="keywords" content="compiler,C,C++,Java,Python">
+    <meta name="robots" content="index, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <title>RunX - CreateFile</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/modal.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/form.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/button.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/icon.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/dropdown.min.css"/>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/dimmer.min.css"/>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.min.css"/>
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/site.min.css">
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/input.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/menu.min.css">
+    
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/favicon/favicon.ico">
 </head>
 
 <body>
 
 <div id="mymodal" class="ui tiny modal">
-  <i class="close icon"></i>
   <div class="header">
     Please Enter filename and select language
   </div>
 <div class="ui form">
-<form id="formId1" method="POST" action="">
+<form id="formId1" method="POST">
      {% csrf_token %}
   <div class="inline field" style="margin:5%">
     <div class="ui input">
         <input type="text" placeholder="Enter file name" name="fname" id="fname">
         </div>
-       <b> <span id="ext" style="font-size:16px">.cpp</span></b>
+       <b><span id="ext" style="font-size:16px">.cpp</span></b>
   </div>
   <div class="field" style="margin:5%;">
-  <div id="lang" class="ui teal dropdown labeled icon button large">
+  <div id="lang2" class="ui teal dropdown labeled icon button large">
     <i class="code icon"></i>
     <span class="text">Language</span>
     <div class="menu">
@@ -36,51 +54,74 @@
         </div>
         <div class="scrolling menu">
         <div class="selected item" data-value="cpp">
-             <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c-plusplus.svg" style="padding:5px;">
+             <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c-plusplus.svg" style="padding:1px;">
             <span class="text">C++</span>
         </div>
         <div class="item" data-value="c">
-             <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c.svg" style="padding:5px;">
+             <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c.svg" style="padding:1px;">
             <span class="text">C</span>
         </div>
         <div class="item" data-value="java">
-            <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/java.svg" style="padding:5px;">
+            <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/java.svg" style="padding:1px;">
             <span class="text">Java</span>
         </div>
         <div class="item" data-value="py">
-            <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/python.svg" style="padding:5px;"><span class="text">Python</span>
+            <img src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/python.svg" style="padding:1px;"><span class="text">Python</span>
         </div>
         </div>
     </div>
     </div>
     </div>
-   <input type="hidden" name="lang" id="lan">
+   <input type="hidden" name="lang" id="lang">
 </form>
+<div class="ui error message"></div>
 </div>
   <div class="actions">
-    <div class="ui deny button">Cancel</div>
     <button id="submitbtn" class="ui labeled icon primary button" type="submit"><i class="paper plane icon"></i>Submit</div>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/form.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/dimmer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/modal.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/dropdown.min.js"></script>
 
 <script>
+
 $( document ).ready(function() {
-    $('#mymodal').modal('show');
+    $('#mymodal').modal({closable  : false,}).modal('show');
 });
 var lan="cpp";
-$('#lan').attr('value',lan);
+$('#lang').val(lan);
 $('#ext').text('.'+lan);
-$('#lang').dropdown('setting', 'onChange', function(){
+$('#lang2').dropdown('setting', 'onChange', function(){
    // sources[lan]=editor1.getValue();
-    lan = $('#lang').dropdown('get value');
+    lan = $('#lang2').dropdown('get value');
+    console.log(lan);
    // editor1.updateOptions({language: monacolang[lan]});
-   $('#lang').attr('value',lan);
+   $('#lang').val(lan);
    $('#ext').text('.'+lan);
 
 });
+
+$('.ui.form')
+  .form({
+    fields: {
+      fname: {
+        identifier: 'fname',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Filename can not be empty.'
+          }
+        ]
+      },
+      
+    }
+  });
 
 $('#submitbtn').click(function(){
     
