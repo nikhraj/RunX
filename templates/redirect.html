@@ -2,15 +2,14 @@
     <head>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta charset="UTF-8"> 
-  <link rel="shortcut icon" href="#" />  
+  <meta charset="UTF-8">   
     </head>
 <body>
 
 <script>
 var data = JSON.parse("{{data|escapejs}}");
 myStorage = window.localStorage;
-var filename = data['fname']; 
+var filename = data['fname'];
 var json_str = localStorage.getItem('mycodes');
 if(!json_str){
     json_str = "";
@@ -22,14 +21,15 @@ else
     var mainObj = [];
 var options = { year: 'numeric', month: 'long', day: 'numeric' };
 var n = new Date().toLocaleDateString("en-IN", options);
-
-mainObj.push({uid:"r"+data['uid'],filename:filename,lang:data['lang'],date:n});
+var up = new Date().toLocaleString();
+//console.log(up);
+mainObj.push({uid:"r"+data['uid'],filename:filename,lang:data['lang'],date:n,updatetime:up});
 
 var json_str = JSON.stringify(mainObj);
 localStorage.setItem('mycodes', json_str);
-console.log(json_str);
+//console.log(json_str);
 
-window.location.replace("r"+data['uid']);
+window.location.replace("../"+"r"+data['uid']);
 
 </script>
 </body>
