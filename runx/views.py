@@ -12,7 +12,7 @@ import shortuuid
 
 # Create your views here.
 
-@csrf_exempt
+@compress_page
 def home_page(request):
     POST = request.POST
     if POST:
@@ -32,9 +32,15 @@ def home_page(request):
         return render(request,'filename.html')
     return render(request,'filename.html')
 
+@compress_page
 def bookmarks(request):
     return render(request,'bookmarks.html')
 
+@compress_page
+def indexpage(request):
+    return render(request,'homepage.html')
+
+@compress_page
 def codeview(request,ID):
     POST = request.POST
     if POST:
@@ -46,6 +52,7 @@ def codeview(request,ID):
         code = POST['src']
         ob.fname = fname
         ob.src = code
+        ob.save()
         dicti1 = {
             'uid':ob.uid,
             'lang':ob.lang,
@@ -57,23 +64,15 @@ def codeview(request,ID):
         return render(request,'index.html',{'data':dataJSON1})
     else:
         try:
-            ob = database.objects.get(uid = ID)
+            ob2 = database.objects.get(uid = ID)
         except Exception:
             raise Http404
         dicti2 = {
-                'uid':ob.uid,
-                'lang':ob.lang,
-                'fname':ob.fname,
-                'src':ob.src
+                'uid':ob2.uid,
+                'lang':ob2.lang,
+                'fname':ob2.fname,
+                'src':ob2.src
             }
             # dump data
         dataJSON2 = dumps(dicti2)
         return render(request,'index.html',{'data':dataJSON2})
-
-
-
-
-
-
-
-
