@@ -16,6 +16,7 @@ var config = {
 			type: 'component',
 			componentName: 'gridComponent',
             width: 35,
+
 			title: 'ProblemStatement',
             isClosable: false,
 			componentState: {
@@ -38,6 +39,7 @@ var config = {
 			type: 'column',
             
             width:25,
+          
 			content: [{
 				type: 'component',
                 
@@ -72,7 +74,7 @@ var config = {
     }]
 };
 
-var myLayout = new GoldenLayout(config);
+var myLayout = new GoldenLayout(config,$("#mydiv"));
 
 myLayout.registerComponent('gridComponent', function(container, componentState) {
 	container.getElement().html(componentState.html);
