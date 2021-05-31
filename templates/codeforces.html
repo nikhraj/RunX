@@ -1,0 +1,943 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="title" content="RunX | Best way to compile, run and save code online">
+    <meta name="description" content="We are providing best UI to Compile, Run, Debug  and save your codes online. Supported languages are C,C++,Python and Java.">
+    <meta name="keywords" content="compiler,C,C++,Java,Python">
+    <meta name="robots" content="index, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <title>RunX - CodeForces</title>
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/golden-layout@1.5.9/src/css/goldenlayout-base.css">
+
+	<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/golden-layout@1.5.9/src/css/goldenlayout-dark-theme.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/style.css">
+	<!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.css"/>
+     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/favicon/favicon.ico">
+     <style>
+    #site-footer{
+        background-color: #0d101e;
+        bottom: 0;
+        font-family: droid sans mono, monospace, monospace, droid sans fallback;
+        font-size: 13px;
+        height: 19px;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: fixed;
+    }
+    #site-footer {
+        color: #ffffff;
+        left: 0;
+        text-align: center;
+        font-weight: 400;
+        width: 100%;
+    }
+
+        .heart {
+        fill: red;
+        position: relative;
+        
+        width: 10px;
+        animation: pulse 1s ease infinite;
+        }
+
+        @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+        100% { transform: scale(1); }
+        }
+         </style>
+</head>
+
+<body>
+<div  id="navbar" class="navbar">
+  <!--<a class="item">
+    
+  <div id="lang" class="ui teal dropdown labeled icon button large">
+    <i class="code icon"></i>
+    <span id="lang">Language</span>
+    <div class="menu">
+        <div class="ui icon search input">
+        <i class="search icon"></i>
+        <input type="text" placeholder="Search language...">
+        </div>
+        <div class="divider"></div>
+        <div class="header">
+        <i class="code icon"></i>
+        Select language
+        </div>
+        <div class="scrolling menu">
+        <div class="selected item" data-value="cpp">
+             <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c-plusplus.svg" style="padding:5px;">
+            <span class="text">C++</span>
+        </div>
+        <div class="item" data-value="c">
+             <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/c.svg" style="padding:5px;">
+            <span class="text">C</span>
+        </div>
+        <div class="item" data-value="java">
+            <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/java.svg" style="padding:5px;">
+            <span class="text">Java</span>
+        </div>
+        <div class="item" data-value="py">
+            <img src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/python.svg" style="padding:5px;"><span class="text">Python</span>
+        </div>
+        </div>
+    </div>
+    </div>
+    </a>-->
+    <a class="item" href="bookmarks" target="_blank">
+    
+  <div class="ui teal labeled icon button medium">
+          <i class="folder icon"></i>
+    <span>MyFiles</span>
+      </div>
+      </a>
+  <a class="item">
+    
+  <div id="theme" style="margin-left:0.4em" class="ui blue dropdown labeled icon button medium" >
+    <i class="edit icon"></i>
+    <span id="theme">Theme</span>
+    <div class="menu">
+        <div class="ui icon search input">
+        <i class="search icon"></i>
+        <input type="text" placeholder="Search theme...">
+        </div>
+        <div class="divider"></div>
+        <div class="header">
+        <i class="edit icon"></i>
+        Select theme
+        </div>
+        <div class="scrolling menu">
+        <div class="selected item" data-value="default">
+            <div class="ui violet empty circular label" ></div>
+            Default
+        </div>
+        <div class="item" data-value="dark">
+            <div class="ui black empty circular label"></div>
+            Sublime
+        </div>
+        <div class="item" data-value="light">
+            <div class="ui grey empty circular label"></div>
+            Light
+        </div>
+        
+        </div>
+    </div>
+    </div>
+   
+    </a>
+    
+   <!-- <div class="item">
+    <button id="setbk" class="ui red button large">S</button>
+    </div>
+    <div class="item">
+    <button id="getbk" class="ui yellow button large">G</button>
+    </div>-->
+     <div class="item" style="margin-left:0.4em">
+     <div id="popupbtn" class="ui labeled icon brown button medium"><i class="save icon"></i>Save</div>
+    </div>
+    <div class="item" style="margin-left:0.4em">
+     <div id="sharebtn" class="ui labeled icon purple button medium"><i class="share alternate icon"></i>Share</div>
+    </div>
+      <div class="item" style="margin:auto;">
+        <div class="ui green button medium" id="run"><i id="load" class="play icon"></i>Run (F9)</div>
+    </div>
+    <div class="item" style="margin:auto">
+        <div class="ui toggle checkbox">
+        <input type="checkbox" name="myInput">
+        <label style="color:white!important">MyInput</label>
+        </div>
+    </div>
+
+    <div class="item" style="margin-left: auto; 
+margin-right: 0;">
+        <img src="https://i.ibb.co/bWNfZWB/Screenshot-1629-removebg-preview.png" style="height:30px">
+    </div>
+
+  
+</div>
+
+<div id="mymodal" class="ui tiny modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Change filename if you want
+  </div>
+<div class="ui form">
+<form id="formId1" action="" method="POST">
+   {% csrf_token %}
+  <div class="field" style="margin:5%;">
+    <label>FileName</label>
+    <input type="text" name="fname" id="fname">
+  </div>
+    <input type="hidden" name="src" id="src">
+    <input type="hidden" name="date" id="date">
+</form>
+</div>
+  <div class="actions">
+    <div class="ui deny button">Cancel</div>
+    <button id="submitbtn" class="ui labeled icon primary button" type="submit"><i class="save icon"></i>Save</div>
+  </div>
+
+
+
+<div id="sharemodal" class="ui tiny modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Share your file with others
+  </div>
+<div id="sharediv" style="display: flex;align-items: center;justify-content: center;">
+
+</div>
+
+<div class="actions" style="display: flex;align-items: center;justify-content: center;">
+    <div class="ui labeled button" tabindex="1">
+  <div class="ui teal button" id="copybtn">
+    <i class="copy icon"></i> Copy
+  </div>
+  <span id="sharelink" class="ui basic teal left pointing label">
+  </span>
+</div>   
+</div>
+</div>
+
+<div id="mydiv">
+    <script>
+        var elmnt = document.getElementById("navbar");
+        var heigh = elmnt.offsetHeight.toString()+"px";
+       document.getElementById("mydiv").style.setProperty('height', 'calc(100% - 89px)');
+    </script>
+	<div  id="goldenify-a">
+		<div id="editor1"></div>
+	</div>
+	<div id="goldenify-b">
+		<div id="editor2"></div>
+	</div>
+	<div id="goldenify-c">
+		<div id="editor3"></div>
+	</div>
+	<div id="goldenify-d">
+		<div id="editor4"></div>
+	</div>
+    <div id="problem">
+        
+        <div class="ui medium header" style="margin:2%">Problem Name</div>
+        <div style="margin:2%"><p>Sample problem statement</p></div>
+        <div class="ui small header" style="margin:2%">Input</div>
+        <div class="ui info green message" style="margin:2%">
+        <ul class="list">
+            <li> Input Line 1</li>
+            <li> Input Line 2</li>
+            <li> Input Line 3</li>
+        </ul>
+        </div>
+        <div class="ui small header" style="margin:2%">Output</div>
+        <div class="ui info violet message" style="margin:2%">
+        <ul class="list">
+            <li> Output Line 1</li>
+            <li> Output Line 2</li>
+            <li> Output Line 3</li>
+        </ul>
+        </div>
+        <div class="ui small header" style="margin:2%">Note</div>
+        <div class="ui info blue message" style="margin:2%">
+       
+        <ul class="list">
+            <li> Some Note</li>
+            <li> Timelimit - 1second</li>
+            <li> Memorylimit - 256</li>
+        </ul>
+        </div>
+        
+    </div>
+</div>
+
+     <div id="site-footer">
+        Made with <svg class="heart" viewBox="0 0 32 29.6">
+        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+            c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+        </svg> for cf lovers.
+     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+
+	<script src='https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/goldenlayout.js'>
+
+	</script>
+
+	<script src='https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/vs/loader.js'></script>
+
+   
+   <!-- <script src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/script2.js">
+
+	</script> -->
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.js">
+	</script>
+
+    <script>
+        //const axios = require('axios').default;
+        require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/vs' }});
+        window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+
+        let proxy = URL.createObjectURL(new Blob([`
+            self.MonacoEnvironment = {
+                baseUrl: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/'
+            };
+            importScripts('https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/vs/base/worker/workerMain.js');
+        `], { type: 'text/javascript' }));
+
+        var fontSize = 18;
+
+        require(["vs/editor/editor.main"], function () {
+
+var cSource = "\
+#include <stdio.h>\n\
+\n\
+int main() {\n\
+    printf(\"Welcome to RunX\\n\");\n\
+    return 0;\n\
+}\n\
+";
+
+var cppSource = "\
+#include <iostream>\n\
+using namespace std;\n\
+int main() {\n\
+    cout << \"Welcome to RunX\" << endl;\n\
+    return 0;\n\
+}\n\
+";
+
+var javaSource = "\
+public class Main {\n\
+    public static void main(String[] args) {\n\
+        System.out.println(\"Welcome to RunX\");\n\
+    }\n\
+}\n\
+";
+
+var pythonSource = "print(\"Welcome to RunX\")";
+
+        var sources = {"c":cSource,"cpp":cppSource,"java":javaSource,"py":pythonSource};
+
+        var titles = {"c":"code.h","cpp":"code.cpp","java":"code.java","py":"code.py"};
+
+        var monacolang = {"c":"c","cpp":"cpp","java":"java","py":"python"};
+
+            let editor1 = monaco.editor.create(document.getElementById('editor1'), {
+                automaticLayout: true,
+                scrollBeyondLastLine: false,
+                value: cppSource,
+                language: "cpp",
+                theme: 'vs-dark',
+                minimap: {
+                    enabled: false,
+                },
+                fontSize: fontSize,
+                scrollbar: {
+                useShadows: true,
+                vertical: "visible",
+                horizontal: "visible",
+                verticalScrollbarSize: 9,
+                horizontalScrollbarSize: 9,
+            },
+            });
+
+            let editor2=monaco.editor.create(document.getElementById('editor2'), {
+                automaticLayout: true,
+                scrollBeyondLastLine: false,
+                value:['Enter input here, remove this line and give input if any !'].join('\n'),
+                theme: 'vs-dark',
+                language: "text/plain",
+                
+                minimap: {
+                    enabled: false,
+                },
+                fontSize: fontSize,
+                scrollbar: {
+                useShadows: true,
+                vertical: "visible",
+                horizontal: "visible",
+                verticalScrollbarSize: 9,
+                horizontalScrollbarSize: 9,
+            },
+            });
+
+            let editor3=monaco.editor.create(document.getElementById('editor3'), {
+                automaticLayout: true,
+                scrollBeyondLastLine: false,
+                value: [
+                    'Your output will be displayed here !',
+                    'Tip : Use ctrl +/- to change fontsize',			
+                ].join('\n'),
+                theme: 'vs-dark',
+                minimap: {
+                    enabled: false,
+                },
+                fontSize: fontSize,
+                language: "text/plain",
+                
+                scrollbar: {
+                useShadows: true,
+                vertical: "visible",
+                horizontal: "visible",
+                verticalScrollbarSize: 9,
+                horizontalScrollbarSize: 9,
+            },
+            });
+            // let editor4=monaco.editor.create(document.getElementById('editor4'), {
+            //     automaticLayout: true,
+            //     value: [
+            //         'Coming Soon ....',
+            //     ].join('\n'),
+            //     scrollBeyondLastLine: false,
+            //     language: 'text/plain',
+            //     theme: 'vs-dark',
+            //     minimap: {
+            //         enabled: false,
+            //     },
+            //     fontSize: fontSize,
+            //     language: "text/plain",
+            //     scrollbar: {
+            //     useShadows: true,
+            //     vertical: "visible",
+            //     horizontal: "visible",
+            //     verticalScrollbarSize: 9,
+            //     horizontalScrollbarSize: 9,
+            // },
+            // });
+            var originalModel = monaco.editor.createModel("My Output", "text/plain");
+            var modifiedModel = monaco.editor.createModel("Sample Output", "text/plain");
+
+            var editor4 = monaco.editor.createDiffEditor(document.getElementById("editor4"), {
+            // enableSplitViewResizing: false,
+                automaticLayout: true,
+                scrollBeyondLastLine: false,
+                // theme: 'vs-dark',
+                
+                minimap: {
+                    enabled: false,
+                },
+                fontSize: 16,
+                scrollbar: {
+                useShadows: false,
+                vertical: "visible",
+                horizontal: "visible",
+                verticalScrollbarSize: 9,
+                horizontalScrollbarSize: 9,
+                },
+          });
+          editor4.setModel({
+            original: originalModel,
+            modified: modifiedModel
+        });
+
+            monaco.editor.defineTheme('myTheme', {
+            base: 'vs-dark',
+            inherit: true,
+            rules: [{ background: '#1d2333' }],
+            colors: {
+                'editor.background': '#1d2333',
+            }});
+
+        monaco.editor.defineTheme('myTheme2', {
+        "base": "vs-dark",
+        "inherit": true,
+        "rules": [
+            
+            { "background":'#282923',"token": "comment", "foreground": "ffa500", "background": "303030", "fontStyle": "italic underline" },
+            { "token": "comment.js", "foreground": "008800", "fontStyle": "bold" },
+            { "token": "comment.css", "foreground": "0000ff", "fontStyle": "bold", "inherit": false, "background": "808080" }
+        ],
+        "colors": {
+                'editor.background': '#282923',
+            }
+        });
+        monaco.editor.defineTheme('myTheme3', {
+            base: 'vs',
+            inherit: true,
+            rules: [{"background":'#fffffe' }],
+            colors: {
+            'editor.background': '#fffffe', 
+            }});
+        $(".lm_tab").css("background", "#1d2333");
+        $(".lm_header").css("background","#0d101e");
+        $("#site-footer").css("background","#0d101e");
+         $("body").css("background","#0d101e");
+        monaco.editor.setTheme('myTheme');
+        $('#theme').dropdown('setting', 'onChange', function(){
+            value = $('#theme').dropdown('get value');
+            //console.log(value);
+            if(value=='dark')
+            {
+                $("#navbar").css("background", "#282923");
+                 $("body").css("background","black");
+                $("#site-footer").css("background", "black");
+                $(".lm_root").css("background", "black");
+                $(".lm_header").css("background","#181915");
+                $(".lm_tab").css("background", "#282923");
+                monaco.editor.setTheme('myTheme2');
+            }
+            else if(value=='light')
+            {
+                $(".lm_title").css("color","black");
+                $("body").css("background","white");
+            // $(".lm_close_tab").css("background","black");
+            // $(".lm_maximise").css("background","black");
+            // $(".lm_close").css("background","black");
+                $("#navbar").css("background", "#fffffe");
+                $(".lm_root").css("background", "#ededed");
+                $(".lm_header").css("background","#ededed");
+                $(".lm_tab").css("background", "#fffffe");
+                monaco.editor.setTheme('myTheme3');
+            }
+            else
+            {
+                $("#site-footer").css("background","#0d101e");
+                $("#navbar").css("background", "#1d2333");
+                 $("body").css("background","#0d101e");
+                $(".lm_root").css("background", "#0d101e");
+                $(".lm_header").css("background","#0d101e");
+                $(".lm_tab").css("background", "#1d2333");
+                monaco.editor.setTheme('myTheme');
+            }
+        });
+        var lan="cpp";
+        
+        var data = JSON.parse("{{data|escapejs}}");
+        lan = data['lang'];
+        monaco.editor.setModelLanguage(editor1.getModel(), monacolang[lan]);
+        $(".lm_title")[0].innerText = data['contestid']+'/'+data['problemid']
+        $(".lm_title")[1].innerText = data['fname']+'.'+lan;
+        $(".lm_content").eq(0).css({"background": "white", "overflow-y": "scroll"});
+
+        if(data['src']!='')
+        {
+            editor1.setValue(data['src']);
+        }
+        else
+        {
+            editor1.setValue(sources[lan]);
+        }
+
+
+        $('#fname').attr('value', data['fname']);
+
+        // xhr = $.ajax({
+		// 			url: 'https://cfproblems.herokuapp.com/?id=' +data['contestid']+'/'+data['problemid'],
+		// 			success: function (newdata) {
+		// 				console.log(newdata);
+		// 			},
+		// 			error: function (xhr, status, error) {
+						
+		// 			}
+		// 		});
+        var sampleinput=[];
+        var sampleoutput=[];
+        var config = {
+            method: 'get',
+            url:'https://sweet-code.herokuapp.com/https://cfproblems.herokuapp.com/?id=' +data['contestid']+'/'+data['problemid'],
+            
+            headers: { 
+            // 'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://axios.nikraj.repl.co',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
+            },
+        };
+        var main_input="";
+        axios(config)
+        .then(function (response) {
+            
+            //console.log(response);
+            var p_data = response.data;
+            var name = p_data.title;
+            var statement = p_data.statement;
+            var note = p_data.note;
+            var input_spec = p_data.inputSpecification;
+            var output_spec = p_data.outputSpecification;
+            var timelimit = p_data.memoryLimit.value+" "+p_data.memoryLimit.unit;
+            var memorylimit =  p_data.timeLimit.value+" "+p_data.timeLimit.unit;
+
+            //var sampleinput = p_data.samples[0].input;
+            
+            var sample = p_data.samples;
+            
+            var main_output="";
+            for(var i=0;i<sample.length;i++)
+            {
+                main_input+="TestCase#"+(i+1)+sample[i].input;
+                main_output+="SampleOut#"+(i+1)+sample[i].output;
+                sampleinput.push(sample[i].input);
+                sampleoutput.push(sample[i].output);
+            }
+
+            //var sampleoutput = p_data.samples[0].output;
+            
+            editor2.setValue(main_input);
+            editor3.setValue(main_output);
+
+        var i=`<div class="ui medium header" style="margin:2%">${name}</div>
+        <div style="margin:2%">${statement}</div>
+        <div class="ui small header" style="margin:2%">Input</div>
+        <div class="ui info green message" style="margin:2%">
+        <ul class="list">
+            <li>${input_spec}</li>
+            
+        </ul>
+        </div>
+        <div class="ui small header" style="margin:2%">Output</div>
+        <div class="ui info violet message" style="margin:2%">
+        <ul class="list">
+            <li>${output_spec}</li>
+        </ul>
+        </div>
+        <div class="ui small header" style="margin:2%">Note</div>
+        <div class="ui info blue message" style="margin:2%">
+       
+        <ul class="list">
+            <li>${note}</li>
+            <li> Timelimit - ${timelimit}</li>
+            <li> Memorylimit - ${memorylimit}</li>
+        </ul>
+        </div>`;
+
+        $(".lm_content").eq(0).html(i);
+
+        var head = document.getElementsByTagName("head")[0], script;
+        script = document.createElement("script");
+        script.type = "text/x-mathjax-config";
+        script[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({\n" +
+            "  tex2jax: { inlineMath: [['$$$','$$$']], displayMath: [['$$$$$$','$$$$$$']] }\n" +
+            "});";
+        head.appendChild(script);
+        script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src  = "https://mathjax.codeforces.org/MathJax.js?config=TeX-AMS_HTML-full";
+        head.appendChild(script);
+           
+        })
+        .catch(function (error) {
+            console.log(error);
+           // editor4.setValue(error);
+            // document.getElementById("editor4").innerHTML=error;
+        });
+
+        function editorsUpdateFontSize(fontSize) {
+            editor1.updateOptions({fontSize: fontSize});
+            editor2.updateOptions({fontSize: fontSize});
+            editor3.updateOptions({fontSize: fontSize});
+            editor4.updateOptions({fontSize: fontSize});
+        }
+
+        var out_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/RunX/audio/outputaudio.mp3');
+        var run_audio = new Audio('https://cdn.jsdelivr.net/gh/nikhraj/RunX/audio/runaudio.mp3');
+        //var btn_audio = new Audio('buttonaudio.mp3');
+
+        $("body").keydown(function (e) {
+                var keyCode = e.keyCode || e.which;
+                
+                if (keyCode == 120) { // F9
+                    e.preventDefault();
+                    $("#run").trigger("click");
+                // run();
+                }  else if (event.ctrlKey && keyCode == 107) { // Ctrl++
+                    e.preventDefault();
+                    fontSize += 1;
+                    editorsUpdateFontSize(fontSize);
+                } else if (event.ctrlKey && keyCode == 109) { // Ctrl--
+                    e.preventDefault();
+                    fontSize -= 1;
+                    editorsUpdateFontSize(fontSize);
+                }
+            });
+
+            var is_user_input=false;
+
+            $('.ui.toggle').checkbox({
+                onChecked: function () { is_user_input=true;
+                 editor2.setValue('');
+                  },
+                onUnchecked: function () { is_user_input=false;
+                editor2.setValue(main_input); }
+            });
+
+        $('#popupbtn').click(function(){
+            $('#mymodal').modal('show');
+           
+        });
+        var link = window.location.href;
+        var title = "Sharing my file using RunX";
+        var k=`<a href="https://api.whatsapp.com/send?text=${title} ${link}" data-action="share/whatsapp/share" target="_blank" style="margin:2%" class="ui circular whatsapp icon large button">
+<i class="whatsapp icon"></i>
+</a>
+<a style="margin:2%" href="https://www.facebook.com/sharer.php?u=${link}&t=${title}" target="_blank" class="ui circular facebook icon large button">
+  <i class="facebook icon"></i>
+</a>
+<a href="https://twitter.com/share?url=${link}&text=${title}" target="_blank" style="margin:2%" class="ui circular twitter icon large button">
+  <i class="twitter icon"></i>
+</a>
+<a style="margin:2%" href="https://www.linkedin.com/shareArticle?url=${link}&title=${title}" target="_blank" class="ui circular linkedin icon large button">
+  <i class="linkedin icon"></i>
+</a>
+<a href="mailto:?subject=${title}&body=${link}" target="_blank" style="margin:2%" class="ui circular google plus icon large button">
+  <i class="envelope icon"></i>
+</a>
+<a style="margin:2%" href="https://telegram.me/share/url?url=${link}&text=${title}" target="_blank" class="ui circular telegram plane icon large button">
+<i class="telegram plane icon"></i>
+</a>`;
+        $('#sharediv').html(k);
+        $('#sharebtn').click(function(){
+            
+            $('#sharelink').text(link);
+            $('#sharemodal').modal('show');
+        });
+        $('#copybtn').click(function(){
+            
+            var o=document.getElementById('sharelink'),t=document.createElement("textarea");t.value=o.textContent,document.body.appendChild(t),t.select(),document.execCommand("Copy"),t.remove(),
+            $('#sharemodal')
+            .toast({
+                message: 'Link copied to your clipboard.',
+                class : 'olive',
+                className: {
+                toast: 'ui message'
+            }
+            })
+        });
+
+        $('#submitbtn').click(function(){
+            
+            var up = new Date().toLocaleString();
+            myStorage = window.localStorage;
+                
+            var json_str = localStorage.getItem('mycodes');
+            //console.log(json_str);
+            var mainObj = JSON.parse(json_str);
+            
+            for(var i=0;i<mainObj.length;i++)
+            {
+                 if(!mainObj[i])
+                    continue;
+                var uid = mainObj[i].uid;
+                var this_uid = "r"+data['uid'];
+                //console.log(this_uid);
+                if(this_uid === uid)
+                {
+                    //console.log(uid);
+                    mainObj[i].updatetime = up;
+                }
+            }
+            var json_str = JSON.stringify(mainObj);
+            localStorage.setItem('mycodes', json_str);
+            console.log(editor1.getValue());
+            $('#src').val(editor1.getValue());
+            $('#formId1').submit();
+        });
+
+
+        
+        var useroutput;
+        $("#run").click(async function run(){
+
+          // useroutput=[];
+          
+        
+           // run_audio.play();
+            $('#navbar').removeClass('navbar').addClass('navbar2');
+
+            $('#load').removeClass('play').addClass('circle').removeClass('icon').addClass('icon').addClass('notch').addClass('loading');
+
+            if(is_user_input)
+            {   
+
+                editor3.setValue("Running...");
+                var data = JSON.stringify({
+                        "code":editor1.getValue(),
+                        "language":lan,
+                        "input":editor2.getValue()
+                });
+
+
+                var config = {
+                    method: 'post',
+                    url: 'https://sweet-code.herokuapp.com/https://codexweb.netlify.app/.netlify/functions/enforceCode',
+                    headers: { 
+                    // 'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'https://axios.nikraj.repl.co',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json'
+                    },
+                    data : data
+                };
+
+                await axios(config)
+                .then(function (response) {
+                    $('#navbar')
+                        .toast({
+                            message: 'Execution Complete,Please Check Output!',
+                            class : 'olive',
+                            className: {
+                            toast: 'ui message'
+                        }
+                        })
+                    editor3.setValue(response.data.output);
+                     $('#load').removeClass();
+                    $('#navbar').removeClass('navbar2').addClass('navbar');
+                    $('#load').addClass('play').addClass('icon');
+                })
+                .catch(function (error) {
+                    console.log(error);
+                     $('#navbar')
+                        .toast({
+                            message: 'Something went wrong!',
+                            class : 'red',
+                            className: {
+                            toast: 'ui message'
+                        }
+                        })
+                });
+                        
+            }
+            else
+            {
+                useroutput = [];
+        var disp="";
+        for(var i=0;i<sampleinput.length;i++)
+        {
+            editor3.setValue(disp);
+            var data = JSON.stringify({
+                    "code":editor1.getValue(),
+                    "language":lan,
+                    "input":sampleinput[i]
+            });
+
+
+        var config = {
+            method: 'post',
+            url: 'https://sweet-code.herokuapp.com/https://codexweb.netlify.app/.netlify/functions/enforceCode',
+            headers: { 
+            // 'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://axios.nikraj.repl.co',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
+            },
+            data : data
+        };
+
+        await axios(config)
+        .then(function (response) {
+          //  run_audio.pause();
+          //  out_audio.play();
+          /*  $('#navbar')
+            .toast({
+                message: 'Execution Complete,Please Check Output!',
+                class : 'olive',
+                className: {
+                toast: 'ui message'
+            }
+            })
+            console.log(response);
+            $('#load').removeClass();
+            $('#navbar').removeClass('navbar2').addClass('navbar');
+            $('#load').addClass('play').addClass('icon');
+            editor3.setValue(response.data.output);*/
+           
+           
+            var outstr = response.data.output;
+            var war = outstr.match(/warning/i);
+            if(war!=null)
+            {
+                var index = outstr.indexOf('./');
+                outstr = outstr.substring(0,index);
+            }
+
+            useroutput.push(outstr);
+           // console.log(response.data.output);
+            disp+="UserOut #"+(i+1)+":\n"+outstr;
+           // console.log(disp);
+            // document.getElementById("editor3").innerHTML=response.data.output;
+        })
+        .catch(function (error) {
+            console.log(error);
+           // editor4.setValue(error);
+            // document.getElementById("editor4").innerHTML=error;
+        });
+
+        }
+        // disp = '';
+        // for(var i=0;i<useroutput.length;i++)
+        // {
+        //     disp+="Out#"+(i+1)+":"+useroutput[i];
+        // }
+         editor3.setValue(disp);
+        $('#navbar')
+            .toast({
+                message: 'Execution Complete,Please Check Output!',
+                class : 'olive',
+                className: {
+                toast: 'ui message'
+            }
+            })
+        }
+         diff();
+          //  console.log(response);
+        $('#load').removeClass();
+        $('#navbar').removeClass('navbar2').addClass('navbar');
+        $('#load').addClass('play').addClass('icon');
+        });
+
+        function diff(){
+         // console.log("Inside Diff");
+          // document.getElementById("editor4").innerHTML="";
+          var userOp="";
+          var sampleOp="";
+          console.log(useroutput);
+          console.log(sampleoutput);
+          //console.log(useroutput["0"]);
+         // for(var i=0;i<useroutput.length;i++)
+        //  {
+          //    conosle.log(useroutput[i]);
+         // }
+          for(var i=0;i<sampleoutput.length;i++){
+            userOp+="UserOut #"+(i+1)+"\n"+useroutput[i];
+            sampleOp+="SampleOut #"+(i+1)+sampleoutput[i];
+          }
+          var originalOp=monaco.editor.createModel(sampleOp, "text/plain");
+          var modifiedOp=monaco.editor.createModel(userOp, "text/plain");
+
+          editor4.setModel({
+            original: originalOp,
+            modified: modifiedOp
+          });
+        }
+
+        });
+
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/scriptforcf2.js"></script>
+
+
+
+    <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$$$','$$$']], displayMath: [['$$$$$$','$$$$$$']]}
+    });
+    </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" src="https://mathjax.codeforces.org/MathJax.js?config=TeX-AMS_HTML-full">
+    </script> -->
+   <!--- <script src="script3.js"> </script> -->
+    
+
+	<!-- <wc-monaco-editor style="height:700px;width:700px" ></wc-monaco-editor> -->
+</body>
+
+</html>
