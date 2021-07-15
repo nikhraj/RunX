@@ -17,9 +17,14 @@ Online compiler for competitive programmers and all the coding enthusiasts.
 ![Video](./ScreenShots/final_linkedin.mp4)
 ## ScreenShots
 ### HomePage
-![HomePage](./ScreenShots/Homepage.png)
+![HomePage](./ScreenShots/Homepage2.png)
 ### CreateFile
 ![CreateFile](./ScreenShots/Codeforces_file.png)
+### Problem View
+![ProblemView1](./ScreenShots/ProblemView1.png)
+![ProblemView2](./ScreenShots/ProblemView2.png)
+### Whiteboard
+![WhiteBoard](./ScreenShots/WhiteBoard.png)
 ### Theme
 * Default
 ![Default](./ScreenShots/Default.png)
@@ -28,6 +33,6 @@ Online compiler for competitive programmers and all the coding enthusiasts.
 * Light
 ![Light](./ScreenShots/Light.png)
 ### Bookmarks
-![Bookmarks](./ScreenShots/Bookmarks.png)
+![Bookmarks](./ScreenShots/Bookmarks2.png)
 
 ## Star this repo if you liked this project.
