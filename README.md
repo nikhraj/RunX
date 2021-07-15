@@ -4,10 +4,11 @@ Online compiler for competitive programmers and all the coding enthusiasts.
 * 👉 Use it as simple compiler
 * 👉 Autosaving code at every 10 seconds.
 * 👉 Solve single problem or all the problems of any contest in a single window.
+* 👉 Inbuilt whiteboard which help you to build logic for problems.
 * 👉 Automatic test case integration (No need to copy paste sample test cases and run them individually). 
 * 👉 Compare your output with the sample test case output.
 * 👉 Check your saved files in the bookmarks tab.
-* 👉 Search and sort files by various parameters.
+* 👉 Search and sort files by various fields like filename, date, lastedit, etc.
 ## Supported Languages
 * C
 * C++
