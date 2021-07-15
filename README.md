@@ -15,7 +15,7 @@ Online compiler for competitive programmers and all the coding enthusiasts.
 * Java
 * Python
 ## Video
-![Video](./ScreenShots/final_linkedin.mp4)
+https://user-images.githubusercontent.com/55176863/125820990-14da2e0f-a14f-4270-8c1c-fd6812d029d3.mp4
 ## ScreenShots
 ### HomePage
 ![HomePage](./ScreenShots/Homepage2.png)
