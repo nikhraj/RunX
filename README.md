@@ -1,7 +1,7 @@
 # RunX
 Online compiler for competitive programmers and all the coding enthusiasts.
 ## Features
-* 👉 Use it as simple compiler
+* 👉 Use it as a simple compiler.
 * 👉 Autosaving code at every 10 seconds.
 * 👉 Solve single problem or all the problems of any contest in a single window.
 * 👉 Inbuilt whiteboard which help you to build logic for problems.
