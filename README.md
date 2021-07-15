@@ -17,9 +17,9 @@ Online compiler for competitive programmers and all the coding enthusiasts.
 ![Video](./ScreenShots/final_linkedin.mp4)
 ## ScreenShots
 ### HomePage
-![HomePage](./ScreenShots/HomePage.png)
+![HomePage](./ScreenShots/Homepage.png)
 ### CreateFile
-![CreateFile](./ScreenShots/CreateFile.png)
+![CreateFile](./ScreenShots/Codeforces_file.png)
 ### Theme
 * Default
 ![Default](./ScreenShots/Default.png)
