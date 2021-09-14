@@ -4,7 +4,7 @@ Online compiler for competitive programmers and all the coding enthusiasts.
 * 👉 Use it as a simple compiler.
 * 👉 Autosaving code at every 10 seconds.
 * 👉 Solve single problem or all the problems of any contest in a single window.
-* 👉 Inbuilt whiteboard which help you to build logic for problems.
+* 👉 Inbuilt whiteboard which can help you to build logic for problems.
 * 👉 Automatic test case integration (No need to copy paste sample test cases and run them individually). 
 * 👉 Compare your output with the sample test case output.
 * 👉 Check your saved files in the bookmarks tab.
