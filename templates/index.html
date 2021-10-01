@@ -4,10 +4,9 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="title" content="RunX | Best way to compile, run and save code online">
-    <meta name="description" content="We are providing best UI to Compile, Run, Debug  and save your codes online. Supported languages are C,C++,Python and Java.">
-    <meta name="keywords" content="compiler,C,C++,Java,Python">
-    <meta name="robots" content="index, nofollow">
+	<meta name="title" content="RunX | CodeCompiler">
+    <meta name="description" content="We are providing best UI to Compile, Run, Debug and save your codes online.You can solve contest problems of codeforces using runx.Supported languages are C,C++,Python and Java.">
+    <meta name="keywords" content="codeforces,compiler,C,C++,Java,Python">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
     <title>RunX - CodeEditor</title>
@@ -17,10 +16,65 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/style.css">
 	<!--<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor/index.js"></script>-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.semanticui.min.css">
      <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nikhraj/RunX/favicon/favicon.ico">
+       <style>
+        
+    #site-footer{
+        background-color: #0d101e;
+        bottom: 0;
+        font-family: droid sans mono, monospace, monospace, droid sans fallback;
+        font-size: 13px;
+        height: 19px;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: fixed;
+    }
+    #site-footer {
+        color: #ffffff;
+        text-align:center;
+        left:0;
+        font-weight: 400;
+        width: 100%;
+    }
+
+        .heart {
+        fill: red;
+        position: relative;
+        
+        width: 10px;
+        animation: pulse 1s ease infinite;
+        }
+
+        @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+        100% { transform: scale(1); }
+        }
+        a{
+            color:#000000;
+        }
+        .ui.labeled.icon.button>.icon, .ui.labeled.icon.buttons>.button>.icon {
+            height:35%!important;
+        }
+
+        .loading {
+        animation: rotation 2s infinite linear;
+        }
+
+        @keyframes rotation {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+        }
+
+         </style>
 </head>
 
-<body>
+<body style="background:#0d101e;">
 <div  id="navbar" class="navbar">
             
            
@@ -59,9 +113,9 @@
     </div>
     </div>
     </a>-->
-    <a class="item" href="bookmarks" target="_blank">
+    <a class="item">
     
-  <div class="ui teal labeled icon button medium">
+  <div class="ui teal labeled icon button medium" id="bookmarksbtn"> 
           <i class="folder icon"></i>
     <span>MyFiles</span>
       </div>
@@ -85,6 +139,14 @@
         <div class="selected item" data-value="default">
             <div class="ui violet empty circular label" ></div>
             Default
+        </div>
+         <div class="item" data-value="nightowl">
+            <div class="ui pink empty circular label"></div>
+           NightOwl
+        </div>
+        <div class="item" data-value="cobalt">
+            <div class="ui blue empty circular label"></div>
+           Tourist
         </div>
         <div class="item" data-value="dark">
             <div class="ui black empty circular label"></div>
@@ -113,6 +175,17 @@
     <div class="item" style="margin-left:0.4em">
      <div id="sharebtn" class="ui labeled icon purple button medium"><i class="share alternate icon"></i>Share</div>
     </div>
+    <div class="item" style="margin-left:0.4em;display: flex;
+  justify-content: center;
+  align-items: center;">
+        <div class="ui header" style="font-size:15px;color:#fffffe;font-weight:300">
+     <i id="saveicon" class="database icon"></i>
+     
+        <div class="content" id="savecontent">
+          AutoSaved
+        </div>
+        </div>
+    </div>
       <div class="item" style="margin:auto;">
         <div class="ui green button medium" id="run"><i id="load" class="play icon"></i>Run (F9)</div>
     </div>
@@ -131,7 +204,7 @@ margin-right: 0;">
     Change filename if you want
   </div>
 <div class="ui form">
-<form id="formId1" action="" method="POST">
+<form id="formId1" action="save" method="POST">
    {% csrf_token %}
   <div class="field" style="margin:5%;">
     <label>FileName</label>
@@ -139,13 +212,13 @@ margin-right: 0;">
   </div>
     <input type="hidden" name="src" id="src">
     <input type="hidden" name="date" id="date">
+    <input type="hidden" name="uid" id="formuid">
 </form>
 </div>
   <div class="actions">
     <div class="ui deny button">Cancel</div>
     <button id="submitbtn" class="ui labeled icon primary button" type="submit"><i class="save icon"></i>Save</div>
   </div>
-</div>
 
 
 <div id="sharemodal" class="ui tiny modal">
@@ -166,8 +239,14 @@ margin-right: 0;">
   </span>
 </div>   
 </div>
+</div>
 
-
+<div id="mydiv">
+    <script>
+        var elmnt = document.getElementById("navbar");
+        var heigh = elmnt.offsetHeight.toString()+"px";
+       document.getElementById("mydiv").style.setProperty('height', 'calc(100% - 89px)');
+    </script>
 	<div  id="goldenify-a">
 		<div id="editor1"></div>
 	</div>
@@ -180,11 +259,64 @@ margin-right: 0;">
 	<div id="goldenify-d">
 		<div id="editor4"></div>
 	</div>
-     
+
+</div>
+     <div id="site-footer">
+        
+        Made with <svg class="heart" viewBox="0 0 32 29.6">
+        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+            c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+        </svg> for coders.
+      
+     </div>
+
+
+<div id="bookmarksmodal"  class="ui basic modal">
+    <i class="close icon"></i>
+<table id="exampletable" style="margin:2%!important" class="ui celled table">
+<thead>
+  <tr>  
+      <th>FileName</th>
+      <th>Date of Creation</th>
+      <th>Last Edit</th>
+      <th>Delete File</th>
+    </tr>
+  </thead>
+  <tbody id="mydata">
+
+      <tr>
+          <th colspan="4">
+          <div style="margin:3%" class="ui warning message">
+            <div class="header">
+                No files are created!
+            </div>
+            Create new files and it will be displayed here.
+        </div>
+          </th>
+      </tr>
+
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="4">
+        <a href="../createfile" target="_blank"><div class="ui right floated primary labeled icon button">
+          <i class="plus circle icon" style="padding-right:5px;"></i> New File
+        </div></a>
+         <a href="../createfilecf" target="_blank"><div class="ui right floated teal labeled icon button">
+          <i class="plus circle icon" style="padding-right:5px;"></i> New CF File
+        </div></a>
+
+      </th>
+    </tr>
+  </tfoot>
+    </table>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
 
      <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.semanticui.min.js"></script>
 
 	<script src='https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/goldenlayout.js'>
 
@@ -192,11 +324,14 @@ margin-right: 0;">
 
 	<script src='https://cdn.jsdelivr.net/npm/monaco-editor@0.21.2/min/vs/loader.js'></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.js">
+	</script>
+
    
    <!-- <script src="https://cdn.jsdelivr.net/gh/nikhraj/CodeForces-Code-Editor/script2.js">
 
 	</script> -->
-    
+    <script src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/scriptforcode.js"></script>
 
     <script>
         //const axios = require('axios').default;
@@ -358,14 +493,35 @@ var pythonSource = "print(\"Welcome to RunX\")";
             colors: {
             'editor.background': '#fffffe', 
             }});
+
+        var jqxhr = $.getJSON( "https://json.extendsclass.com/bin/4797ca89a652", function(result){
+            monaco.editor.defineTheme('nightowl', result);
+            console.log( "success" );
+            })
+            .fail(function() {
+                console.log( "error" );
+        });
+
+        var jqxhr2 = $.getJSON( "https://json.extendsclass.com/bin/003d9459bfd0", function(result){
+            monaco.editor.defineTheme('cobalt', result);
+            console.log( "success" );
+            })
+            .fail(function() {
+                console.log( "error" );
+        });
+
         $(".lm_tab").css("background", "#1d2333");
         $(".lm_header").css("background","#0d101e");
+        $("#site-footer").css("background","#0d101e");
+         $("body").css("background","#0d101e");
         monaco.editor.setTheme('myTheme');
         $('#theme').dropdown('setting', 'onChange', function(){
             value = $('#theme').dropdown('get value');
             //console.log(value);
             if(value=='dark')
             {
+                $("body").css("background","black");
+                $("#site-footer").css("background", "black");
                 $("#navbar").css("background", "#282923");
                 $(".lm_root").css("background", "black");
                 $(".lm_header").css("background","#181915");
@@ -375,6 +531,7 @@ var pythonSource = "print(\"Welcome to RunX\")";
             else if(value=='light')
             {
                 $(".lm_title").css("color","black");
+                $("body").css("background","white");
             // $(".lm_close_tab").css("background","black");
             // $(".lm_maximise").css("background","black");
             // $(".lm_close").css("background","black");
@@ -384,12 +541,33 @@ var pythonSource = "print(\"Welcome to RunX\")";
                 $(".lm_tab").css("background", "#fffffe");
                 monaco.editor.setTheme('myTheme3');
             }
-            else
+            else if(value=="nightowl")
             {
+                $("#navbar").css("background", "#011627");
+                $(".lm_root").css("background", "#010e17");
+                $(".lm_header").css("background","#010e17");
+                $(".lm_tab").css("background", "#011627");
+                $("#site-footer").css("background","#010e17");
+                $("body").css("background","#0d101e");
+                monaco.editor.setTheme('nightowl');
+            }
+            else if(value=="cobalt")
+            {
+                $("#navbar").css("background", "#002240");
+                $(".lm_root").css("background", "#00162a");
+                $(".lm_header").css("background","#00162a");
+                $(".lm_tab").css("background", "#002240");
+                $("#site-footer").css("background","#00162a");
+                $("body").css("background","#00162a");
+                monaco.editor.setTheme('cobalt');
+            }
+            else{
                 $("#navbar").css("background", "#1d2333");
                 $(".lm_root").css("background", "#0d101e");
                 $(".lm_header").css("background","#0d101e");
                 $(".lm_tab").css("background", "#1d2333");
+                $("#site-footer").css("background","#0d101e");
+                $("body").css("background","#0d101e");
                 monaco.editor.setTheme('myTheme');
             }
         });
@@ -507,6 +685,14 @@ var pythonSource = "print(\"Welcome to RunX\")";
             $('#mymodal').modal('show');
            
         });
+
+        
+        // $('.ui.basic.modal').modal({
+        //     inverted: true });
+        $('#bookmarksbtn').click(function(){
+            $('#bookmarksmodal').modal('show');
+           
+        });
         var link = window.location.href;
         var title = "Sharing my file using RunX";
         var k=`<a href="https://api.whatsapp.com/send?text=${title} ${link}" data-action="share/whatsapp/share" target="_blank" style="margin:2%" class="ui circular whatsapp icon large button">
@@ -546,34 +732,152 @@ var pythonSource = "print(\"Welcome to RunX\")";
             })
         });
 
-        $('#submitbtn').click(function(){
+        // $('#submitbtn').click(function(){
             
-            var up = new Date().toLocaleString();
-            myStorage = window.localStorage;
+        //     var up = new Date().toLocaleString();
+        //     myStorage = window.localStorage;
                 
-            var json_str = localStorage.getItem('mycodes');
-            //console.log(json_str);
-            var mainObj = JSON.parse(json_str);
+        //     var json_str = localStorage.getItem('mycodes');
+        //     //console.log(json_str);
+        //     var mainObj = JSON.parse(json_str);
             
-            for(var i=0;i<mainObj.length;i++)
-            {
-                 if(!mainObj[i])
-                    continue;
-                var uid = mainObj[i].uid;
-                var this_uid = "r"+data['uid'];
-                //console.log(this_uid);
-                if(this_uid === uid)
-                {
-                    //console.log(uid);
-                    mainObj[i].updatetime = up;
-                }
+        //     for(var i=0;i<mainObj.length;i++)
+        //     {
+        //          if(!mainObj[i])
+        //             continue;
+        //         var uid = mainObj[i].uid;
+        //         var this_uid = "r"+data['uid'];
+        //         //console.log(this_uid);
+        //         if(this_uid === uid)
+        //         {
+        //             //console.log(uid);
+        //             mainObj[i].updatetime = up;
+        //         }
+        //     }
+        //     var json_str = JSON.stringify(mainObj);
+        //     localStorage.setItem('mycodes', json_str);
+        //     console.log(editor1.getValue());
+        //     $('#src').val(editor1.getValue());
+        //     $('#formId1').submit();
+        // });
+
+function updatetime()
+{
+    var up = new Date().toLocaleString();
+    myStorage = window.localStorage;
+        
+    var json_str = localStorage.getItem('mycodes');
+    //console.log(json_str);
+    var mainObj = JSON.parse(json_str);
+    
+    for(var i=0;i<mainObj.length;i++)
+    {
+            if(!mainObj[i])
+            continue;
+        var uid = mainObj[i].uid;
+        var this_uid = "r"+data['uid'];
+        //console.log(this_uid);
+        if(this_uid === uid)
+        {
+            //console.log(uid);
+            mainObj[i].updatetime = up;
+            break;
+        }
+    }
+    var json_str = JSON.stringify(mainObj);
+    localStorage.setItem('mycodes', json_str);
+}
+
+$('#submitbtn').click(function(){
+    //console.log(editor1.getValue());
+    $('#src').val(editor1.getValue());
+    $('#formuid').val(data['uid']);
+
+    $('#formId1').submit(function() { 
+        $.ajax({ 
+            data: $(this).serialize(), 
+            type: $(this).attr('method'), 
+            url: $(this).attr('action'), 
+            success: function(response) { 
+                console.log(response); 
+                $(".lm_title")[0].innerText = response.fname+'.'+lan;
+            },
+            error: function(e, x, r) { 
+               console.log(response);
             }
-            var json_str = JSON.stringify(mainObj);
-            localStorage.setItem('mycodes', json_str);
-            console.log(editor1.getValue());
-            $('#src').val(editor1.getValue());
-            $('#formId1').submit();
         });
+        return false;
+    });
+    $('#formId1').trigger('submit');
+    $('#mymodal').modal('hide');
+    updatetime();
+});
+
+var mycode = editor1.getValue();
+var save = function () {
+   // var f = -1;
+    // editor1.onDidChangeModelContent(function (e) {
+    //     f=1;
+    //     console.log(1);
+    //     return;
+    // });
+    console.log(1);
+   
+    //console.log(mycode);
+    var currcode = editor1.getValue();
+    if(mycode!==currcode)
+    {
+        $('#saveicon').removeClass('database').addClass('spinner').addClass('loading');
+        $('#savecontent').text("Saving...");
+        console.log(2);
+            $('#src').val(editor1.getValue());
+            $('#formuid').val(data['uid']);
+
+            $('#formId1').submit(function() { 
+                $.ajax({ 
+                    data: $(this).serialize(), 
+                    type: $(this).attr('method'), 
+                    url: $(this).attr('action'), 
+                    success: function(response) { 
+                    // console.log(response); 
+                        
+                    },
+                    error: function(e, x, r) { 
+                    //console.log(response);
+                    }
+                });
+                return false;
+            });
+            $('#formId1').trigger('submit');
+            updatetime();
+            setTimeout(function(){ 
+                $('#saveicon').removeClass('spinner').removeClass('loading').addClass('database');
+                $('#savecontent').text("AutoSaved");
+                
+            }, 3000);
+
+        //     $('body')
+        // .toast({
+        //     message: 'Auto saved code !',
+        //     class:'info'
+        // });
+        mycode=currcode;
+        
+    }
+}
+
+$(document).ready(function() {
+    //  editor1.onDidChangeModelContent(function (e) {
+    //      console.log(1);
+    //     setTimeout(function(){ 
+    //        save();
+    //      }, 6000);
+    // });
+ var intervalId = window.setInterval(function(){
+        save();
+    }, 10000);
+});
+
 
 
         
@@ -595,7 +899,7 @@ var pythonSource = "print(\"Welcome to RunX\")";
 
         var config = {
             method: 'post',
-            url: 'https://sweet-code.herokuapp.com/https://codexweb.netlify.app/.netlify/functions/enforceCode',
+            url: 'https://mycorsforcf.herokuapp.com/https://codexweb.netlify.app/.netlify/functions/enforceCode',
             headers: { 
             // 'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': 'https://axios.nikraj.repl.co',
@@ -635,10 +939,106 @@ var pythonSource = "print(\"Welcome to RunX\")";
         });
 
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/nikhraj/RunX/library/script.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.js">
-	</script>
+
+
+<script>
+    
+    $(document).ready(function() {
+     //console.log(document.getElementById('exampletable').innerHTML);
+    $('#exampletable').DataTable({
+        "order": [[ 1, "desc" ]]
+    });
+});
+
+        imgdict = {'cpp':'https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c-plusplus.svg','c':'https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/c.svg','py':'https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/python.svg','java':'https://cdn.jsdelivr.net/gh/nikhraj/RunX/icons/java.svg'};
+        myStorage = window.localStorage;
+            
+        var json_str = localStorage.getItem('mycodes');
+        //console.log(json_str);
+        var mainObj = JSON.parse(json_str);
+        //console.log(mainObj);
+        var k='';
+        for(var i=0;i<mainObj.length;i++)
+        { 
+            if(!mainObj[i])
+                continue;
+            var uid = mainObj[i].uid;
+            var fname = mainObj[i].filename;
+            var date = mainObj[i].date;
+            var lang = mainObj[i].lang;   
+            var imurl = imgdict[lang];
+            var updates = mainObj[i].updatetime;
+            last=new Date(new Date().toLocaleString())-new Date(updates);
+            //var a = new Date(); 
+            //var d = (mainObj[i].date-a)/(1000*60*60);
+            last=last/(1000*60);
+            //console.log(last);
+            var days = Math.floor(last/(24*60));
+            var hrs = Math.floor(last/60)%24;
+            var mins = Math.floor(last)%60;
+            var disp = "";
+
+            if(days===0)
+            {
+                if(hrs===0)
+                {
+                    disp+=mins.toString()+" mins ago";
+                }
+                else
+                {
+                    disp+=hrs.toString()+" hrs ago";
+                }
+            }
+            else
+            {
+                disp+=days.toString()+" days ago";
+            }
+
+           // <td>${Math.floor(last/(24*60))} Days  ${Math.floor(last/24)%24} Hrs  ${Math.floor(last)%60} mins Ago</td>
+
+            k+=`<tr class="${i}">
+            <td class="collapsing">
+                <a href="../${uid}">
+                <img class="ui avatar image" src="${imurl}" style="padding-right:5px;">${fname}
+                </a>
+            </td>
+            <td>${date}</td>
+            <td>${disp}</td>
+            <td ><button onclick="myfunc('${i}','${uid}')" class="ui cancel red labeled icon button">
+      <i class="delete icon"></i>
+      Delete
+   </button></td>
+            </tr>`
+        }
+        document.getElementById('mydata').innerHTML=k;
+        function myfunc(tr_id,my_uid)
+        {
+            var newid='.'+tr_id.toString();
+            $(newid).hide();
+            //myStorage = window.localStorage;
+            
+          //  var json_str = localStorage.getItem('mycodes');
+            //console.log(json_str);
+           // var mainObj = JSON.parse(json_str);
+            for(var i=0;i<mainObj.length;i++)
+            { 
+                if(!mainObj[i])
+                    continue;
+                var uid = mainObj[i].uid;
+                if(uid===my_uid)
+                {
+                    delete mainObj[i];
+                }
+            }
+            var json_str = JSON.stringify(mainObj);
+            localStorage.setItem('mycodes', json_str);
+        }
+</script>
+<script>
+   
+        
+</script>
    <!--- <script src="script3.js"> </script> -->
     
 
